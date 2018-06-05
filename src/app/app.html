@@ -1,0 +1,52 @@
+<ion-menu [content]="content" swipeEnabled="false" class="customMenu" (ionOpen)="isOpen()" (ionClose)="onMenuClose()">
+
+  <ion-header>
+    <!-- <ion-list>
+      <ion-item *ngIf="currentUser">
+        <ion-avatar item-left>
+          <img src="{{user_profile}}" height="60px" width="60px">
+        </ion-avatar>
+        <h2>{{currentUser.name}}</h2>
+      </ion-item>
+    </ion-list> -->
+    <ion-grid no-padding class="header_for_menu">
+      <ion-row no-padding *ngIf="currentUser">
+        <ion-col no-padding col-1>
+          <img src="{{user_profile}}" class="user_image"  *ngIf="user_profile">
+            <img src="images/default-user-image.png" class="user_image"  *ngIf="!user_profile">
+        </ion-col>
+        <ion-col no-padding col-11>
+          <h5 class="user_name">{{currentUser.name}}</h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-header>
+
+  <ion-content no-padding>
+
+    <!--{{currentUser |json}}-->
+    <ion-list no-lines >
+      <button ion-item *ngFor="let page of pages" [class.activeHighlight]="checkActive(page)" menuClose (click)="openPage($event,page)" class="name_of_menu">
+        {{page.title}}
+        <ion-icon name="ios-arrow-forward"  class="arrow_for_menu"></ion-icon>
+      </button>
+      
+    </ion-list>
+
+    <div class="powered_byArea" text-center>
+      <h3 class="title-head">{{appName}}</h3>
+      <p class="powertxt">
+        <ion-icon class="customIcon" name="ios-arrow-forward"></ion-icon> Powered By</p>
+      <img src="{{logo}}" alt="" class="powerd_by_image">
+      <!-- <ion-item>
+      <ion-thumbnail >
+        <img src="{{logo}}" class="powerd_by_image">
+      </ion-thumbnail>
+    </ion-item> -->
+    </div>
+
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

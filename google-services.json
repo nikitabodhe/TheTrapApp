@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "17545284695",
+    "firebase_url": "https://the-trap-app.firebaseio.com",
+    "project_id": "the-trap-app",
+    "storage_bucket": "the-trap-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17545284695:android:40078da94ad6b8c5",
+        "android_client_info": {
+          "package_name": "com.dean.trapapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17545284695-b2s1ntbel2d22ul9s97eguqgbt5l08rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU47qFZB71AOGxYBDHjBi1iNesDx-Q8EI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

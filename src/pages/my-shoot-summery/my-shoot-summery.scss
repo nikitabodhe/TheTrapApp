@@ -1,0 +1,192 @@
+page-my-shoot-summery {
+	.bar-button-md{text-transform: capitalize;}
+	.hidebackIcon .back-button-icon{ display:none;}
+	.hidebackIcon .title.title-md{ width:80%;}
+	.segmentArea{ padding:5px 10px 5px 10px;}
+	.segment-md .segment-button{ border-bottom:1px solid rgb(56, 126, 245)}
+	.segment-button:last-of-type {
+	    margin-left: 0px;
+	    border-left-width: 0px;
+	    border-radius: 0px 4px 4px 0px;
+	}
+	.segment-button.segment-activated {
+	    color: #fff !important;
+	    background-color: #7d858b !important;
+	    opacity: 1;
+	    transition: all 100ms linear;
+	    border:1px solid #333 !important;
+	    border-bottom:1px solid #333 !important;
+	}
+	.segment-md .segment-button{}
+	.segment-button:first-of-type {
+	    margin-right: 0px;
+	    border-radius: 4px 0px 0px 4px;
+	}
+	.add ion-icon{
+		background: black;
+	}
+	.segment-button {
+	    width: 0px;
+	    height: 30px !important;
+	    font-size: 1.3rem;
+	    line-height: 30px !important;
+	    color: #000 !important;
+	    background-color: #ececec !important;
+	    flex: 1 1 0%;
+	    border-width: 1px;
+	    border-style: solid;
+	    border-color: #ccc !important;
+	    border-bottom:1px solid #ccc !important;
+	}
+	.segment-button {
+	    position: relative;
+	    display: block;
+	    margin-right: 0px;
+	    margin-left: 0px;
+	    text-align: center;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    cursor: pointer;
+	    overflow: hidden;
+	}
+	.More{
+		font-weight: 300;
+		 font-family: 'Lato', sans-serif;
+		 font-size: 12px;
+		//  margin-top: 7px;
+	}
+	
+	.score{ color: #0072bc;font-size: 18px;text-align: center;}
+	.mainEventloop{ border-bottom:1px solid #ccc; clear:both; overflow:hidden; padding:0px; margin-top: -1%;}
+	.scoreArea{float: left;color: #0072bc;font-size: 22px;width: 18%;padding: 14px 7px;}
+	.scoreArea.grey{float: left;color: #ccc;font-weight: bold;font-size: 30px;}
+	.eventNameArea{ float:left; width:52%; padding:0 10px;}
+	.eventNameArea p{font-size:16px; margin:4px 0;font-family: 'Lato', sans-serif;}
+	.iconArea{float: left;width: 13%;padding: 5px 0px;font-size: 19px;}
+	
+	.iconArea ion-icon{ color:red; }
+	.arrowArea{float:right; width: 17%;}
+	
+	.arrowArea ion-icon{font-size: 33px;float: right;color: #ccc;margin-top: 7px;}
+	// .delete{
+	// min-height: 70%;
+	// }
+	.clubDetailss h2 {font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.2em;
+		
+	text-transform:capitalize;
+    font-size: 16px;
+    word-wrap: break-word;
+    white-space: -moz-pre-wrap; 
+    white-space: pre-wrap;padding: 0 10px;
+	
+	text-align: center;
+	}
+	ion-item-sliding.active-slide.active-options-right ion-item-options:not([side=left]) {
+    width: 100%;
+    visibility: visible;
+	margin-top: -11px;
+
+}
+	.clubDetails,.upcommingShoots{}
+
+.clubDetails h2{font-family: 'Lato', sans-serif;font-weight:500;line-height: 1.2em;font-size: 18px;margin-top:10px;word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap; color:#000;}
+.clubDetails h3{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;font-size: 15px;margin-top:10px;word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap; color:#000;}
+.upcommingShoots h2{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;font-size: 16px;margin-top:0px;word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap; color:#000;}
+.upcommingShoots p{margin:3px 0;}
+.upcommingShoots ion-grid{padding:0 !important;}
+.clubDetails p.greyText{font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.2em;
+    font-size: 15px; color:#7d858b; margin:0px;}
+.clubDetails p{font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.5em;font-size: 15px;margin:0px }
+.clubDetails p.contactText{font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.0em;
+    font-size: 12px; color:#7d858b; margin:18px 0 6px 0;}
+.clubMap{}
+ion-card{margin:0px !important; box-shadow:none  !important;-moz-box-shadow:none  !important;-webkit-box-shadow:none  !important;}
+.bar-button-md{text-transform: capitalize;}
+.hidebackIcon .back-button-icon{ display:none;}
+.hidebackIcon .title.title-md{ width:80%;}
+.note_bg{ background:#f6f8fb;}
+.icon{ width: 10%;  min-height:1px; cursor:pointer;text-align: center;}
+// .icon{ width: 40%; float:left; min-width:40%; min-height:1px; cursor:pointer;}
+.titleCol{ width: 40%; float:left;}
+.lavelCol{ width: 30%; float:left;}
+.dateCol{ width: 15%; float:left;}
+.row{ clear:both; overflow:hidden; padding: 5px 0 3px 3px;}  
+.row div{padding:5px;}
+p.title{font-family: 'Lato', sans-serif;font-weight:300;font-size: 13px; color:#a6a1a1; margin:0px;}
+	p.shootName{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;
+    font-size: 15px; color:#000; margin:0px;}
+ion-col{padding:10px 5px !important;}
+.addShootButton{ height: 43px !important;
+    margin-bottom: 10px;} 
+     #map {
+        width: 100%;
+        height: 150px;
+      }
+ 	.list_banner {
+	  width:100%;
+	  height: 100px;
+	  background: #ececec;
+	}
+	.img-responsive {
+		width: 100%;
+		
+		position: relative;
+		border-radius: 2%;
+	}
+.customIcon{position: absolute;right: 2px; font-size: 33px; color:#b7b7b7;}
+.customIcons{position: absolute;right: 1px; font-size: 33px; color:#b7b7b7;}
+	.scrolll{
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    display: block;
+	width: 100%;
+	background-color: white;
+	}
+	ion-icon.customIcons.icon.icon-ios.ion-md-trash.item-icon {
+    font-size: 26px;
+}
+ion-icon.customIcons.icon.icon-md.ion-md-trash.item-icon {
+	font-size: 26px;
+}
+.list-ios {
+    margin: 0px 0 0px 0;
+}
+.footer_class{height: 10%;}
+.add_new_event{margin-top: -1%;}
+.doc_outline{margin-left: 10%;}
+
+ .details{margin-top: 7%;margin-left:3%; }
+	.clubDetails{padding-top: 0%;}
+	
+	
+	
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}
+.clubDetailss
+{
+	padding: 5px 5px !important;
+}
+.content-ios{
+	top:5px !important;
+}

@@ -1,0 +1,223 @@
+<ion-header class="hidebackIcon">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Add Score</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form #addShootsForm="ngForm">
+    <ion-card>
+      <ion-card-header class="header">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col width-10>
+              <ion-icon class="icn" name="home"> </ion-icon>
+            </ion-col>
+            <ion-col width-90>
+              <p text-capitalize>{{shootdetails.shoot_name}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-col width-10>
+              <ion-icon class="icn" name="calendar"> </ion-icon>
+            </ion-col>
+            <ion-col width-20>
+              <h4> {{eventDetails.start_date | date}}</h4>
+            </ion-col>
+            <ion-col width-70></ion-col>
+          </ion-row>
+          <ion-row no-padding class="data">
+            <ion-col width-10>
+              <ion-icon class="icon icn" ios="ios-aperture" md="md-aperture"></ion-icon>
+            </ion-col>
+            <ion-col width-70>
+              <p text-capitalize>{{shootdetails.levelname}} - {{eventDetails.name}}</p>
+            </ion-col>
+            <ion-col width-20></ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-col width-10>#</ion-col>
+            <ion-col width-20>
+              <h4 text-capitalize>Event #{{eventDetails.event_no}}</h4>
+            </ion-col>
+            <ion-col width-70></ion-col>
+          </ion-row>
+        </ion-grid>
+        <hr class="hr">
+      </ion-card-header>
+    </ion-card>
+    <ion-grid class="note_bg">
+      <ion-row no-padding>
+        <ion-col width-50 no-padding>
+          <p class="shootNameTxtt"><strong> Trap #</strong> </p>
+        </ion-col>
+        <ion-col width-50 no-padding>
+          <p style="font-size: 18px;" color="primary" class="shootNameTxtt">
+            {{tempTraps}}
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-20>
+
+        </ion-col>
+        <ion-col width-80 no-padding style="margin-top:-5%;">
+          <ion-list *ngFor="let tempRange of ranges; let i = index" no-lines>
+            <ion-item>
+              <h2 item-left>{{i+1}}. {{tempRange.range}}/{{tempRange.roundLength}} </h2>
+              <ion-range name="range" [(ngModel)]="tempRange.range" min="0" max="{{tempRange.roundLength}}" (ionChange)='setTrap()' color="primary"
+                pin="false"></ion-range>
+              <ion-icon (click)="changeRound(tempRange)" name="options" item-right></ion-icon>
+              <ion-icon (click)="deleteTraps(tempRange)" name="ios-trash-outline" item-right></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="tempRange.round">
+              <ion-range name="tempRange.roundLength" [(ngModel)]="tempRange.roundLength" min="0" snaps="true" max="200" step="25" color="primary"
+                pin="false" (ionChange)='chekTrap()'></ion-range>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="eventDetails.type_id == 2">
+          <button ion-button color="dark" (click)="addDTrap()" outline class="edit">+ Add Trap</button>
+        </ion-col>
+        <ion-col *ngIf="eventDetails.type_id != 2">
+          <button ion-button color="dark" (click)="addTraps()" outline class="edit">+ Add Trap</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div>
+      <ion-grid *ngIf="shootdetails.levelname == 'ATA' || shootdetails.levelname == 'PITA' " class="note_grid">
+        <ion-row>
+          <ion-col width-10>
+          </ion-col>
+          <ion-col width-80>
+            <ion-item *ngIf="eventDetails.type_id != 3">
+              <ion-label> Class/Category</ion-label>
+              <ion-toggle name="addShootDetails.show" [(ngModel)]="addShootDetails.show" (ionChange)='changeClass()' [checked]="addShootDetails.show"></ion-toggle>
+            </ion-item>
+            <ion-item *ngIf="eventDetails.type_id == 3">
+              <ion-label>Switch Class/Category</ion-label>
+              <ion-toggle name="addShootDetails.show" [(ngModel)]="addShootDetails.show" (ionChange)='changeCategory()' [checked]="addShootDetails.show"></ion-toggle>
+            </ion-item>
+          </ion-col>
+          <ion-col width-10>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-20 style="padding-top:0px;" *ngIf="eventDetails.type_id!= 3">
+            <div *ngIf="addShootDetails.show">
+              <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="eventDetails.class_id==0|| eventDetails.place_id==0||eventDetails.class_id==null|| eventDetails.place_id==null">
+              <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="(eventDetails.class_id!=0 && eventDetails.class_id!=null) && (eventDetails.place_id!=0 && eventDetails.place_id!=null)">
+            </div>
+            <div *ngIf="!addShootDetails.show">
+              <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="eventDetails.category_id==0 || eventDetails.place_id==0 || eventDetails.class_id==null|| eventDetails.place_id==null">
+              <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="(eventDetails.category_id!=0 && eventDetails.category_id!=null) && (eventDetails.place_id!=0 && eventDetails.place_id!=null)">
+            </div>
+          </ion-col>
+          <ion-col width-20 style="padding-top:0px;" *ngIf="eventDetails.type_id== 3">
+            <div *ngIf="addShootDetails.show">
+              <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="eventDetails.category_id==0 || eventDetails.place_id==0 || eventDetails.category_id==null|| eventDetails.place_id==null">
+              <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="(eventDetails.category_id!=0 && eventDetails.category_id!=null) && (eventDetails.place_id!=0 && eventDetails.place_id!=null)">
+            </div>
+            <div *ngIf="!addShootDetails.show">
+              <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="eventDetails.yardage_id==0|| eventDetails.place_id==0 ||eventDetails.yardage_id==''|| eventDetails.place_id==''">
+              <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="(eventDetails.yardage_id!=0 && eventDetails.yardage_id!=null) && (eventDetails.place_id!=null && eventDetails.place_id!=0)">
+            </div>
+          </ion-col>
+          <ion-col width-40 style="padding-top:0px;">
+            <div *ngIf="eventDetails.type_id != 3">
+              <div *ngIf="addShootDetails.show" class="shots_filterArea">
+                <ion-item>
+                  <ion-label>Class</ion-label>
+                  <ion-select name="eventDetails.class_id" [(ngModel)]="eventDetails.class_id" placeholder="Class">
+                    <ion-option value="0">None</ion-option>
+                    <ion-option *ngFor="let class of allClass" value="{{class.class_id}}">{{class.class_name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div *ngIf="!addShootDetails.show" class="shots_filterArea">
+                <ion-item>
+                  <ion-label>Category</ion-label>
+                  <ion-select name="eventDetails.category_id" [(ngModel)]="eventDetails.category_id" placeholder="Category">
+                    <ion-option value="0">None</ion-option>
+                    <ion-option *ngFor="let category of allCategory" value="{{category.category_id}}">{{category.name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+            </div>
+            <div *ngIf="eventDetails.type_id == 3">
+              <div *ngIf="addShootDetails.show" class="shots_filterArea">
+                <ion-item>
+                  <ion-label>Category</ion-label>
+                  <ion-select name="eventDetails.category_id" [(ngModel)]="eventDetails.category_id" placeholder="Category">
+                    <ion-option value="0">None</ion-option>
+                    <ion-option *ngFor="let category of allCategory" value="{{category.category_id}}">{{category.name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div class="shots_filterArea" *ngIf="!addShootDetails.show">
+                <ion-item>
+                  <ion-label>Yardage</ion-label>
+                  <ion-select name="eventDetails.yardage_id" [(ngModel)]="eventDetails.yardage_id" placeholder="Yardage">
+                    <ion-option value="0">None</ion-option>
+                    <ion-option *ngFor="let earned of allEarnedYardage" value="{{earned.yardage_id}}">{{earned.yardage_value}}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col width-40 style="padding-top:0px;">
+            <div class="shots_filterArea">
+              <ion-item>
+                <ion-label>Place</ion-label>
+                <ion-select name="eventDetails.place_id" [(ngModel)]="eventDetails.place_id" placeholder="Place">
+                  <ion-option value="0">None</ion-option>
+                  <ion-option *ngFor="let place of allPlaces" value="{{place.place_id}}">{{place.place_name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col width-20>
+          </ion-col>
+          <ion-col width-40 style="padding-top:0px;">
+            <div class="shots_filterArea" *ngIf="eventDetails.type_id == 3">
+              <ion-item>
+                <ion-label>Earned Yardage</ion-label>
+                <ion-select name="eventDetails.earned_yardage_id" (ionChange)='AddEarnedYardage(EarnedYardage)' [(ngModel)]="eventDetails.earned_yardage_id"
+                  placeholder="Earned Yardage">
+                  <ion-option value="0">None</ion-option>
+                  <ion-option *ngFor="let earned of EarnedYardage" value="{{earned.earned_yardage_id}}">{{earned.earned_yardage_value}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+          <ion-col width-40>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid tyle="margin-top:-20%;">
+        <ion-row no-padding>
+          <ion-col width-3>
+          </ion-col>
+          <ion-col width-94>
+            <ion-item>
+              <textarea placeholder="Enter your Note here... " [(ngModel)]="eventDetails.note" rows="4" name="comment[text]" id="comment_text"
+                cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+            </ion-item>
+          </ion-col>
+          <ion-col width-3>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div padding *ngIf="score_id" style="margin-top:-10%;">
+      <button (click)="confirm()" [disabled]="!addShootsForm.form.valid" type="Submit" ion-button block>Submit</button>
+    </div>
+  </form>
+</ion-content>

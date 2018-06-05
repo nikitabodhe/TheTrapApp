@@ -1,0 +1,33 @@
+page-classify-me {
+	ion-card-header{padding:15px !important;}
+	ion-avatar{margin: 0px 16px 0px 0px !important;}
+	// ion-card{ margin:50px 50px !important;max-width: 200px;min-height: 70px;}
+	 ion-card{ max-width: 200px;min-height: 70px;border: 1px solid lightgray; }
+	  .vertical-align-content{
+		  margin-top: 30%;
+	  }
+	.shadow{
+		box-shadow: 5px 5px 5px;
+	}
+	.font{font-family: 'Lato', sans-serif; font-size: 10px}
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}

@@ -1,0 +1,85 @@
+page-intro-slider {
+
+	
+	ion-content{ 
+		 background: url('../images/login_bg.png') no-repeat center center fixed; 
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover; 
+	}
+
+	h2{
+		color:#fff;
+		text-transform:uppercase;
+		font-family: 'Montserrat', sans-serif;
+        font-weight:600;
+		font-size:32px;
+	}
+	p{
+		color:#fff;
+		font-family: 'Montserrat', sans-serif;
+		font-size:18px;
+	}
+
+	// .thirdSlide p{
+	// 	margin:5px 0;
+	// 	font-size:16px;
+	// }
+	// .thirdSlide .slider_image img{ height:260px;}
+	
+	.swiper-pagination-bullet{
+		width: 12px;
+        height: 12px;
+        background-color:#ec5e2f;
+        opacity: 1 !important;
+	}
+	.swiper-pagination-bullet-active{
+       background-color:#fff;
+	}
+	.slider_image img{
+		 max-height:300px;
+	}
+	 .logo{width: 80%;}
+	  
+	h3.title-head{
+		font-family: 'Montserrat', sans-serif;
+		
+		font-weight:600;
+		font-size:32px;
+		text-align:center;
+		color: #ffffff;
+
+	}
+.text{margin-top: 1%;}
+	ion-slide {
+     align-items: flex-start !important;
+     
+	}
+	ion-slides{
+		height:90% !important;
+	}
+	.getStartedButton{ height:45px; background:#fff; color:red; border-radius:0px; -moz-border-radius:0px;-webkit-border-radius:0px;}
+	.swiper-pagination-bullet{opacity: 1 !important;}
+
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}

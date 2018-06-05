@@ -1,0 +1,276 @@
+<!--
+  Generated template for the MyShootSummery page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="hidebackIcon">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title text-center>Shoot Summary</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="scrolll">
+    <div class="clubDetailss" *ngIf="myShootDetails">
+        <ion-col width-30 text-center><b>{{myShootDetails.extra_details.shoot_name}}</b></ion-col>
+    </div>
+
+
+
+    <div class="segmentArea" *ngIf="myShootDetails.extra_details.levelname == 'ATA' || myShootDetails.extra_details.levelname == 'PITA'">
+      <!-- *ngIf="shootdetails.levelname == 'ATA' || shootdetails.levelname == 'PITA'" -->
+      <ion-segment [(ngModel)]="segment">
+        <ion-segment-button value="allEvents" (click)="showdata()">
+          Events
+        </ion-segment-button>
+        <ion-segment-button value="myEvents" (click)="showdata()">
+          My Events
+        </ion-segment-button>
+        <ion-segment-button value="shootDetails" (click)="loadMap()">
+          Shoot Details
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <ion-grid no-padding *ngIf="show">
+      <ion-row>
+        <ion-col col-4 class="score">S: {{myShootDetails.scores.singletotal | number : '1.2-2'}}</ion-col>
+        <ion-col col-4 class="score">H: {{myShootDetails.scores.handitotal | number : '1.2-2'}}</ion-col>
+        <ion-col col-4 class="score">D: {{myShootDetails.scores.doubletotal | number : '1.2-2'}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <hr/>
+  <div class="upcomming_event">
+    <p text-center *ngIf="shoots == '' ">No Shoot found</p>
+    <div [ngSwitch]="segment" no-padding>
+      <template ngFor let-event [ngForOf]="myShootDetails.events" let-i="index" no-padding>
+        <ion-list *ngSwitchCase="'allEvents'" no-padding>
+          <div *ngIf="searching" text-center class="spinner-container">
+            <ion-spinner></ion-spinner>
+          </div>
+          <ion-item-sliding #slidingItem no-padding>
+            <!-- <ion-item *ngIf="event.score == 0" (click)="addShootDetails($event,event,event)"> -->
+            <ion-item *ngIf="event.score != 0" (click)="eventDetails(event)">
+              <div class="mainEventloop">
+                <div class="scoreArea" text-center *ngIf="event.score != 0">{{event.score}} </div>
+                <div class="scoreArea grey" text-center *ngIf="event.score == 0">-</div>
+                <div class="eventNameArea">
+                  <p>Event #{{event.event_no}} - {{event.typename}}</p>
+                  <p *ngIf="event.start_date  '0000-00-00 00:00:00' ">{{event.start_date | date }}</p>
+                  <!--- <span  *ngIf="event.end_date  '0000-00-00 00:00:00' ">{{event.end_date | date }}</span>-->
+                </div>
+                <div class="iconArea">
+                  <ion-row no-padding *ngIf="event.type_id==3">
+                    <ion-icon *ngIf="(event.yardage_value ||event.categoriey_name) &&event.place_name " name="ios-trophy-outline"></ion-icon>
+                  </ion-row>
+                  <ion-row no-padding *ngIf="event.type_id!=3">
+                    <ion-icon *ngIf="(event.class_name || event.categoriey_name) && event.place_name " name="ios-trophy-outline"></ion-icon>
+                  </ion-row>
+                  <ion-row no-padding>
+                    <ion-icon *ngIf="event.note" name="ios-document-outline" class="doc_outline"></ion-icon>
+                  </ion-row>
+                </div>
+                <div class="arrowArea">
+                  <!--<h6 (click)="eventDetails(event)" class="More" *ngIf="event.score == 0"> Details</h6>-->
+                  <!-- <ion-icon (click)="deleteEvent(event)" class="customIcons" name="ios-trash-outline" *ngIf="event.score != 0"></ion-icon> -->
+
+                  <ion-icon class="customIcon" name="ios-arrow-forward" *ngIf="event.score != 0"></ion-icon>
+                </div>
+              </div>
+            </ion-item>
+            <ion-item *ngIf="event.score == 0" (click)="addShootDetails($event,event,event)">
+              <div class="mainEventloop">
+                <div class="scoreArea" text-center *ngIf="event.score != 0">{{event.score}} </div>
+                <div class="scoreArea grey" text-center *ngIf="event.score == 0">-</div>
+                <div class="eventNameArea">
+                  <p>Event #{{event.event_no}} - {{event.typename}}</p>
+                  <p *ngIf="event.start_date  '0000-00-00 00:00:00' ">{{event.start_date | date }}</p>
+                  <!--- <span  *ngIf="event.end_date  '0000-00-00 00:00:00' ">{{event.end_date | date }}</span>-->
+                </div>
+                <div class="iconArea">
+                  <ion-row no-padding *ngIf="event.type_id==3">
+                    <ion-icon *ngIf="(event.yardage_value ||event.categoriey_name) &&event.place_name " name="ios-trophy-outline"></ion-icon>
+                  </ion-row>
+                  <ion-row no-padding *ngIf="event.type_id!=3">
+                    <ion-icon *ngIf="(event.class_name || event.categoriey_name) && event.place_name " name="ios-trophy-outline"></ion-icon>
+                  </ion-row>
+                  <ion-row no-padding>
+                    <ion-icon *ngIf="event.note" name="ios-document-outline" class="doc_outline"></ion-icon>
+                  </ion-row>
+                </div>
+                <div class="arrowArea">
+                  <!--<h6 (click)="eventDetails(event)" class="More" *ngIf="event.score == 0"> Details</h6>-->
+                  <!-- <ion-icon (click)="deleteEvent(event)" class="customIcons" name="ios-trash-outline" *ngIf="event.score != 0"></ion-icon> -->
+                  <ion-icon class="customIcon" name="ios-arrow-forward" *ngIf="event.score == 0"></ion-icon>
+                </div>
+              </div>
+            </ion-item>
+
+            <ion-item-options class="delete">
+              <button ion-button color="danger" (click)="deleteEvent(event,slidingItem)" *ngIf="event.score != 0"><ion-icon name="ios-trash-outline"></ion-icon></button>
+            </ion-item-options>
+          </ion-item-sliding>
+          <template *ngIf="(i+1) % 3 == 0 && (((i+1) / 3) - 1)< banners?.length" ngFor let-banner [ngForOf]="banners" let-index="index"
+          let-isFirst="first">
+            <ion-slides autoplay="10000" loop="true" speed="3000">
+              <ion-slide *ngFor="let banner of banners[((i+1) / 3) - 1]">
+                <div *ngIf="isFirst" class="list_banner">
+                  <img class="img-responsive" [src]=banner.image/>
+                </div>
+              </ion-slide>
+            </ion-slides>
+          </template>
+        </ion-list>
+      </template>
+      <template ngFor let-event [ngForOf]="myShootDetails.events" let-i="index" no-padding>
+        <ion-list *ngSwitchCase="'myEvents'">
+          <ion-item-sliding #slidingItem>
+            <ion-item *ngIf="event.score" no-padding (click)="eventDetails(event)">
+              <div class="mainEventloop" *ngIf="event.score">
+                <div class="scoreArea" text-center *ngIf="event.score">{{event.score}}</div>
+                <div class="eventNameArea" *ngIf="event.score">
+                  <p *ngIf="event.score">Event #{{event.event_no}} - {{event.typename}}</p>
+                  <p *ngIf="event.score">{{event.start_date | date }}</p>
+                  <!--- <span  *ngIf="event.end_date  '0000-00-00 00:00:00' ">{{event.end_date | date }}</span>-->
+                </div>
+                <div class="iconArea" *ngIf="event.score">
+                  <ion-row no-padding *ngIf="event.type_id==3">
+                    <ion-icon *ngIf="(event.yardage_value || event.categoriey_name )&&event.place_name " name="ios-trophy-outline"></ion-icon>
+                  </ion-row>
+                  <ion-row no-padding *ngIf="event.type_id!=3">
+                    <ion-icon *ngIf="(event.class_name || event.categoriey_name) && event.place_name " name="ios-trophy-outline"></ion-icon>
+                  </ion-row>
+                  <ion-row no-padding>
+                    <ion-icon *ngIf="event.note" name="ios-document-outline" class="doc_outline"></ion-icon>
+                  </ion-row>
+                </div>
+                <div class="arrowArea" *ngIf="event.score">
+                  <!--<h6 (click)="eventDetails(event)" item-right class="More"> Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6>-->
+                  <!-- <ion-icon (click)="deleteEvent(event)" class="customIcons" name="ios-trash-outline" *ngIf="event.score != 0"></ion-icon> -->
+                  <ion-icon class="customIcon" name="ios-arrow-forward" *ngIf="event.score"></ion-icon>
+                </div>
+              </div>
+            </ion-item>
+
+            <ion-item-options>
+              <button ion-button color="danger" (click)="deleteEvent(event,slidingItem)"><ion-icon name="ios-trash-outline"></ion-icon></button>
+            </ion-item-options>
+          </ion-item-sliding>
+          <div *ngIf="event.score">
+          <template *ngIf="(i+1) % 3 == 0 && (((i+1) / 3) - 1)< banners?.length" ngFor let-banner [ngForOf]="banners" let-index="index"
+          let-isFirst="first">
+            <ion-slides autoplay="10000" loop="true" speed="3000">
+              <ion-slide *ngFor="let banner of banners[((i+1) / 3) - 1]">
+                <div *ngIf="isFirst" class="list_banner">
+                  <img class="img-responsive" [src]=banner.image/>
+                </div>
+              </ion-slide>
+            </ion-slides>
+          </template>
+        </div>
+        </ion-list>
+      </template>
+      <div *ngSwitchCase="'shootDetails'">
+        <div class="clubDetails">
+          <ion-grid>
+            <ion-row>
+              <ion-col width-70>
+                <!-- <div class="details">
+                <h2 style="margin: 0px 3px 3px 0px;" text-capitalize>{{shootdetails.shoot_name}}</h2>
+                <p class="greyText">{{shootdetails.shoot_date | date}}</p>
+                <h3>{{shootdetails.club_name}}</h3>
+                <p class="contactText" style="margin-top:0px;">{{shootdetails.shoot_address}}</p>
+                  </div> -->
+                <div class="details">
+                  <h3>{{myShootDetails.extra_details.club_name}}</h3>
+                  <p *ngIf="S_month!=E_month"><b>Date: </b> {{myShootDetails.extra_details.shoot_date | date:'MMM dd'}} - {{myShootDetails.extra_details.shoot_end_date
+                    | date:'MMM dd, yyyy'}} </p>
+                  <p *ngIf="(S_month==E_month)&&(S_date!=E_date)"><b>Date: </b>{{myShootDetails.extra_details.shoot_date | date:'MMM'}} {{date}}, {{myShootDetails.extra_details.shoot_end_date
+                    | date:'yyyy'}} </p>
+                  <p *ngIf="(S_date==E_date)&& (S_month==E_month)"><b>Date: </b> {{myShootDetails.extra_details.shoot_date | date:'MMM dd'}}, {{myShootDetails.extra_details.shoot_end_date
+                    | date:'yyyy'}}</p>
+                  <p style="margin-top:0px;"><b>Address: </b> {{myShootDetails.extra_details.shoot_address}} </p>
+                  <p style="margin-top:0px;"><b>City: </b> {{myShootDetails.extra_details.city}}</p>
+                  <p style="margin-top:0px;"><b>State: </b> {{myShootDetails.extra_details.state}}</p>
+                  <p style="margin-top:0px;"><b>Zip Code: </b> {{myShootDetails.extra_details.zip_code}}</p>
+                  <p style="margin-top:0px;" (click)="openUrl(myShootDetails.extra_details.program_url)"><b>Url:</b>
+                    <u style="color:blue">More Info</u>
+                  </p>
+
+                </div>
+              </ion-col>
+              <ion-col width-30 style="margin-right:0px" push-right>
+                <div #map id="map" *ngIf="lat"></div>
+                <img src="images/map1.jpg" *ngIf="!lat" height="100px" width="150px">
+                <p *ngIf="!lat">No Address Found</p>
+
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <div>
+          <ion-row>
+            <ion-slides *ngIf="banners.length > 0" autoplay="3000" loop="true" speed="2000">
+              <ion-slide *ngFor="let banner of banners[0]">
+                <div class="list_banner">
+                  <img class="img-responsive" src="{{banner?.image}}" />
+                </div>
+              </ion-slide>
+            </ion-slides>
+            <!-- <div class="list_banner">
+				<img class="img-responsive" src="{{banners}}" />
+			</div> -->
+          </ion-row>
+        </div>
+        <div *ngIf="myShootDetails.events != '' && myShootDetails.events" class="upcommingShoots note_bg">
+          <ion-grid padding>
+            <ion-row>
+              <ion-col width-30 text-center><strong><u>Date</u></strong></ion-col>
+              <ion-col width-20 text-center><strong><u>Ev #</u></strong></ion-col>
+              <ion-col width-25 text-center><strong><u>Type</u></strong></ion-col>
+              <ion-col width-20 text-center><strong><u>#</u></strong></ion-col>
+            </ion-row>
+            <ion-row *ngFor="let shoots of myShootDetails.events; let i = index">
+              <ion-col width-30 text-center style="margin-left:2%;">{{shoots.start_date | date : 'MMM dd, yyyy'}}</ion-col>
+              <ion-col width-20 text-center> {{shoots.event_no}}</ion-col>
+              <ion-col width-25 text-center>{{shoots.typename}}</ion-col>
+              <ion-col width-20 text-center *ngIf="!shoots.score">
+                <span>N/A</span>
+              </ion-col>
+              <ion-col width-20 text-center *ngIf="shoots.score" text-center>{{shoots.score}}</ion-col>
+            </ion-row>
+            <ion-row padding>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <!--<div padding>
+          <button ion-button block class="addShootButton">Add Shoot to My Shoots</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer class="footer_class">
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col text-center no-padding>
+        <img src="images/add@3x.png" class="icon" (click)="addShootDetailsNew($event,myShootDetails.extra_details,myShootDetails.events)"
+        /><br/>
+        <p (click)="addShootDetailsNew($event,shoot)" class="add_new_event">Add New Event</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-buttons  >
+      <button ion-button text-center (click)="addShootDetailsNew($event,shoot)">
+       <ion-icon name="add"></ion-icon>
+       Add New event
+      </button>
+    </ion-buttons> -->
+</ion-footer>

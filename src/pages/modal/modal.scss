@@ -1,0 +1,47 @@
+page-modal {
+	ion-content{ 
+		 background: url('../images/login_bg.png') no-repeat center center fixed; 
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover; 
+	}
+	h3.title-head{
+		font-family: 'Montserrat', sans-serif;
+		font-weight:600;
+		font-size:32px;
+		text-align:center;
+		color: #ffffff;
+	}
+	p{
+		color:#fff;
+		font-family: 'Montserrat', sans-serif;
+		font-size:18px;
+	}
+	.selectPreferences{ border:1px solid #fff;}
+	.textCommon{ color:#fff;}
+	ion-select{ border:1px solid #fff; max-width:100%;width: 100%;padding: 5px !important; color:#fff;}
+	.list-ios,.list-md{margin: -1px 0 0 0 !important;}
+	.item-md,.item-ios{ background:none !important;padding-left:0px;}
+	.verticalAlign{ padding-top:16px}
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}

@@ -1,0 +1,67 @@
+<!--Generated template for the ClubDetails page.-->
+<ion-header class="hidebackIcon">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Club Details</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div  class="clubDetails">
+    <h2 text-capitalize>{{clubdetails.club_name}}</h2>
+    <p  text-capitalize><b>Address:</b> {{clubdetails.address}} </p>
+    <p  text-capitalize><b>City:</b>  {{clubdetails.city}} </p>
+    <p  text-capitalize><b>State:</b>  {{clubdetails.state}} </p>
+    <p  ><b>Zip code:</b>  {{clubdetails.zip_code}} </p>
+    <p  (click)="openUrl(clubdetails.url)"><b>URL:</b><span style="color:blue"> {{clubdetails.url}} </span>  </p>
+    <p text-center><b><u>Contact Info</u></b></p>
+    <p  text-capitalize><b>Name:</b>  {{clubdetails.contact_firstname}} {{clubdetails.contact_lastname}}</p>
+    <a href="mailto:{{clubdetails.contact_email}}" target="_top"> 
+    <p  ><b> Email:</b>  {{clubdetails.contact_email}}    <ion-icon ios="ios-mail" md="md-mail"></ion-icon></p>  </a> 
+    <a href="tel:{{clubdetails.phone_number}}" >
+     <p  ><b> Number:</b>  {{clubdetails.phone_number}}  <ion-icon ios="ios-call" md="md-call" ></ion-icon>
+    </p></a>
+  </div>
+  <div class="clubMap">
+  </div>
+  <div #map id="map"></div>
+  <div *ngIf="clubdetails.shoots != ''" class="upcommingShoots">
+    <h2 text-center>
+      <u>Upcoming Shoots</u>
+    </h2>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col width-70>
+          <p class="label"><b>Shoot Name</b></p>
+        </ion-col>
+        <ion-col width-30>
+          <p class="label" text-center><b>Date</b></p>
+        </ion-col>
+      </ion-row>
+      	<div class="line"></div>
+      <ion-row *ngFor="let shoot of clubdetails.shoots " >
+        <ion-col width-70 (click)="shootDetails()">
+          <p class="label" text-capitalize >{{shoot.shoot_name}}</p>
+        </ion-col>
+        <ion-col width-30 (click)="shootDetails($event,shoot)">
+          <p  *ngIf="shoot.S_month!=shoot.E_month" text-center>{{shoot.shoot_date | date:'MMM dd'}}-{{shoot.shoot_end_date | date:'MMM dd yyyy'}} </p>
+          <p  *ngIf="(shoot.S_month==shoot.E_month)&&(shoot.S_date!=shoot.E_date)" text-center> {{shoot.shoot_date | date:'MMM'}} {{shoot.date}}, {{shoot.shoot_end_date | date:'yyyy'}} </p>
+          <p  *ngIf="(shoot.S_date==shoot.E_date)&& (shoot.S_month==shoot.E_month)" text-center> {{shoot.shoot_date | date:'MMM dd, yyyy'}}</p> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+</ion-content>
+<ion-footer>
+  <div padding *ngIf="clubdetails.is_my_shoot==0">
+    <button ion-button (click)="addClubTomyShoots()"  *ngIf="show" block>Add All Shoots to My Shoots</button>
+      <button ion-button  *ngIf="!show"  block>No Known Shoots</button>
+  </div>
+  <div padding *ngIf="clubdetails.is_my_shoot==1">
+    <button ion-button color="light" *ngIf="show" block>Added to My Shoots</button>
+      <button ion-button  *ngIf="!show"  block>No Known Shoots</button>
+  </div>
+</ion-footer>

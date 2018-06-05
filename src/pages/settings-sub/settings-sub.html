@@ -1,0 +1,333 @@
+<!--
+  Generated template for the SettingsSub page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header class="hidebackIcon">
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title text-center>{{currentPage}}</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content padding>
+	<form *ngIf="resetPass" (ngSubmit)="changePass()" #changePassword="ngForm" novalidate>
+		<ion-list class="noBg">
+			<ion-item>
+				<ion-label floating>Current Password</ion-label>
+				<ion-input text-left type="password" name="currentPassword" [(ngModel)]="passwordDetails.currentPass" required></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>New Password</ion-label>
+				<ion-input text-left type="password" name="newPassword" [(ngModel)]="passwordDetails.newPassword" required></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Confirm Password</ion-label>
+				<ion-input text-left type="password" name="confirmPassword" [(ngModel)]="passwordDetails.confirmPassword" required></ion-input>
+			</ion-item>
+		</ion-list>
+		<button class="login_button" text-capitalize ion-button block type="submit" [disabled]="!changePassword.form.valid">Change password</button>
+	</form>
+	<form *ngIf="updatePrf" #updateProfileInfo="ngForm" novalidate>
+		<ion-list>
+			<ion-grid class="profile">
+				<ion-row item-center style="text-align: center;">
+					<ion-col>
+						<img (click)="chooseImage()" src="images/default-user-image.png" *ngIf="!user_image" class="image">
+						<img (click)="chooseImage()" src="{{user_image}}" *ngIf="user_image" class="image">
+						<br/>
+						<button ion-button small item-center (click)="chooseImage()" *ngIf="!imagePath">
+							<span style=" text-transform: capitalize;"> Edit</span>
+							<!-- <ion-icon name="create" (click)="chooseImage()" item-center></ion-icon> -->
+						</button>
+					</ion-col>
+				</ion-row>
+				<ion-row item-center style="text-align: center;" *ngIf="imagePath">
+					<ion-col>
+						<button ion-button small item-left (click)="uploadPhoto()">
+							<ion-icon name="cloud-upload"></ion-icon>
+							<span style=" text-transform: capitalize;"> Upload</span>
+						</button>
+						<p>Click on
+							<b color="primary">
+								<u>Upload</u>
+							</b> to update profile photo.</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			<ion-grid>
+				<ion-row>
+					<ion-col width-90>
+						<ion-item>
+							<ion-label fixed>Name</ion-label>
+							<ion-input text-left type="text" name="name" [(ngModel)]="profileDetails.name" [disabled]="emailDis" placeholder="Username"></ion-input>
+						</ion-item>
+					</ion-col>
+					<ion-col width-10>
+						<ion-icon name="create" (click)="editEmail()"> </ion-icon>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col width-90>
+						<ion-item>
+							<ion-label fixed>Email/UserName :</ion-label>
+							<ion-input text-left type="email" name="Email" [(ngModel)]="profileDetails.email" placeholder="Email" [disabled]="emailDis"></ion-input>
+						</ion-item>
+					</ion-col>
+					<ion-col width-10>
+						<ion-icon name="create" (click)="editEmail()"> </ion-icon>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col width-90>
+						<ion-item>
+							<ion-label fixed>Zip code :</ion-label>
+							<ion-input text-left type="number" name="zipcode" [(ngModel)]="profileDetails.zipcode" placeholder="Zip code" [disabled]="emailDis"></ion-input>
+						</ion-item>
+					</ion-col>
+					<ion-col width-10>
+						<ion-icon name="create" (click)="editEmail()"> </ion-icon>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			<!--
+		  <ion-item>
+		    <ion-label floating>Date of birth</ion-label>
+		    <ion-datetime displayFormat="DD/MM/YYYY" name="dob" [(ngModel)]="profileDetails.dob"></ion-datetime>
+		  </ion-item>-->
+
+
+			<!--<ion-item>
+			  <ion-label>Gender</ion-label>
+			  <ion-select name="gender" [(ngModel)]="profileDetails.gender">
+			    <ion-option value="female" >Female</ion-option>
+			    <ion-option value="male">Male</ion-option>
+			  </ion-select>
+		  </ion-item>-->
+
+		</ion-list>
+		<ion-item-divider color="light" text-center>
+			<u>Classification</u>
+		</ion-item-divider>
+		<div class="selectPreferences">
+			<ion-grid>
+				<ion-row>
+					<ion-col class="textCommon" text-center col-4></ion-col>
+					<ion-col class="textCommon" text-center col-4>ATA</ion-col>
+					<ion-col class="textCommon" text-center col-4>PITA</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col class="textCommon verticalAlign" col-4>Single</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.ata_single" [(ngModel)]="userPreference.ata_single">
+									<ion-option *ngFor="let class of allClass" value="{{class.class_id}}">{{class.class_name}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.pita_single" [(ngModel)]="userPreference.pita_single">
+									<ion-option *ngFor="let class of allClass" value="{{class.class_id}}">{{class.class_name}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col class="textCommon verticalAlign" col-4>Dbl</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.ata_double" [(ngModel)]="userPreference.ata_double">
+									<ion-option *ngFor="let class of allClass" value="{{class.class_id}}">{{class.class_name}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.pita_double" [(ngModel)]="userPreference.pita_double">
+									<ion-option *ngFor="let class of allClass" value="{{class.class_id}}">{{class.class_name}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col class="textCommon verticalAlign" col-4>Handicap</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.ata_handicap" [(ngModel)]="userPreference.ata_handicap">
+									<ion-option *ngFor="let earned of allEarnedYardage" value="{{earned.yardage_id}}">{{earned.yardage_value}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.pita_handicap" [(ngModel)]="userPreference.pita_handicap">
+									<ion-option *ngFor="let earned of allEarnedYardage" value="{{earned.yardage_id}}">{{earned.yardage_value}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col class="textCommon verticalAlign" col-4>Category</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.ata_category" [(ngModel)]="userPreference.ata_category">
+									<ion-option *ngFor="let category of allCategory" value="{{category.category_id}}">{{category.name}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+					<ion-col class="textCommon" text-center col-4>
+						<ion-list>
+							<ion-item>
+								<ion-select name="userPreference.pita_category" [(ngModel)]="userPreference.pita_category">
+									<ion-option *ngFor="let category of allCategory" value="{{category.category_id}}">{{category.name}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+
+		<button (click)="getLatLng()" class="login_button" text-capitalize ion-button block type="submit" [disabled]="!updateProfileInfo.form.valid">Update</button>
+
+	</form>
+
+	<form *ngIf="pushNotification" #updatePushNotification="ngForm" class="push" novalidate>
+		<h2>
+			<b>Settings</b>
+		</h2>
+		<p>
+			<b>I want to receive the following upcoming shoot notifications</b>
+		</p>
+		<ion-list class="noBg">
+			<ion-item clear>
+				<ion-label>From clubs which shoots I've added to My Shoots &amp; Scores </ion-label>
+				<ion-toggle checked="is_my_shoot_score1" name="is_my_shoot_score1" [(ngModel)]="is_my_shoot_score1"></ion-toggle>
+
+			</ion-item>
+		</ion-list>
+		<ion-item>
+			<ion-label>From clubs I've added to My Favorites</ion-label>
+			<ion-toggle checked="is_my_favourite1" name="is_my_favourite1" [(ngModel)]="is_my_favourite1"></ion-toggle>
+
+		</ion-item>
+
+		<ion-item>
+			<ion-label>From clubs located near me</ion-label>
+			<ion-toggle checked="location" name="location" [(ngModel)]="location"></ion-toggle>
+		</ion-item>
+
+		<div *ngIf="location" class="pushh">
+			<p>Set the pre-saved distance </p>
+			<ion-item no-padding>
+				<ion-label text-left>{{is_club_located_near_me==300?'300+':is_club_located_near_me}} Miles</ion-label>
+				<ion-range min="0" max="300" snap="true" step="5" name="is_club_located_near_me" [(ngModel)]="is_club_located_near_me"></ion-range>
+			</ion-item>
+		</div>
+
+		<h2>Frequency</h2>
+		<ion-list radio-group name="frequency" [(ngModel)]="frequency">
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 4-5 days prior)</ion-label>
+				<ion-toggle checked="frequency_four1" name="frequency_four1" [(ngModel)]="frequency_four1"></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 10-11 days prior)</ion-label>
+				<ion-toggle checked="frequency_four1" name="frequency_ten1" [(ngModel)]="frequency_ten1"></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 17-18 days prior)</ion-label>
+				<ion-toggle checked="frequency_four1" name="frequency_seventeen1" [(ngModel)]="frequency_seventeen1"></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 24-25 days prior)</ion-label>
+				<ion-toggle checked="frequency_four1" name="frequency_twentyfour1" [(ngModel)]="frequency_twentyfour1"></ion-toggle>
+			</ion-item>
+		</ion-list>
+
+		<button ion-button block (click)="changePushSettings()">Save Settings</button>
+
+	</form>
+
+	<!-- <form *ngIf="forgetPass" #forgetPassForm="ngForm" (ngSubmit)="forgetPassword()" novalidate>
+		<ion-list class="noBg">
+
+			<ion-item>
+				<ion-label floating>Email Id</ion-label>
+				<ion-input text-left type="text" name="email" [(ngModel)]="forgetUser.email"></ion-input>
+			</ion-item>
+
+		</ion-list>
+
+		<button class="login_button" text-capitalize ion-button block type="submit" [disabled]="!forgetPassForm.form.valid">Send</button>
+
+	</form> -->
+	<form *ngIf="emailManagePage" #updatePushNotification="ngForm" class="push" novalidate>
+		<h2>
+			<b>Settings</b>
+		</h2>
+		<p>
+			<b>I want to receive the following upcoming shoot notifications</b>
+		</p>
+		<ion-list class="noBg">
+			<ion-item clear>
+				<ion-label>From clubs which shoots I've added to My Shoots &amp; Scores </ion-label>
+				<ion-toggle name="is_my_shoot_score11" [(ngModel)]="is_my_shoot_score11"></ion-toggle>
+			</ion-item>
+		</ion-list>
+		<ion-item>
+			<ion-label>From clubs I've added to My Favorites</ion-label>
+			<ion-toggle checked="is_my_favourite11" name="is_my_favourite11" [(ngModel)]="is_my_favourite11"></ion-toggle>
+		</ion-item>
+		<ion-item>
+			<ion-label>From clubs located near me</ion-label>
+			<ion-toggle checked="false" name="locations" [(ngModel)]="locations"></ion-toggle>
+		</ion-item>
+		<div *ngIf="locations" class="pushh">
+			<p>Set the pre-saved distance </p>
+			<ion-item no-padding>
+				<ion-label text-left>{{club_located_near_me==300?'300+':club_located_near_me}} Miles</ion-label>
+				<ion-range min="0" max="300" snap="true" step="5" name="club_located_near_me" [(ngModel)]="club_located_near_me"></ion-range>
+			</ion-item>
+		</div>
+		<h2>Frequency</h2>
+		<ion-list radio-group name="frequency" [(ngModel)]="frequency">
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 4-5 days prior)</ion-label>
+				<ion-toggle checked="email_frequency_four" name="email_frequency_four" [(ngModel)]="email_frequency_four"></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 10-11 days prior)</ion-label>
+				<ion-toggle checked="email_frequency_ten" name="email_frequency_ten" [(ngModel)]="email_frequency_ten"></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 17-18 days prior)</ion-label>
+				<ion-toggle checked="email_frequency_seventeen" name="email_frequency_seventeen" [(ngModel)]="email_frequency_seventeen"></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label>The week prior to each shoot(approx 24-25 days prior)</ion-label>
+				<ion-toggle checked="email_frequency_twentyfour" name="email_frequency_twentyfour" [(ngModel)]="email_frequency_twentyfour"></ion-toggle>
+			</ion-item>
+		</ion-list>
+		<button ion-button block (click)="changeEmailSettings()">Save Settings</button>
+	</form>
+
+</ion-content>

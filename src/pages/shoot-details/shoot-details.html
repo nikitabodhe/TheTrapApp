@@ -1,0 +1,87 @@
+<ion-header class="hidebackIcon">
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title text-center>Shoot Details</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<div class="clubDetails">
+		<ion-grid>
+			<h2 text-center>{{shootdetails.shoot_name}}</h2>
+			<div class="line"></div>
+			<ion-row>
+				<ion-col width-50 no-padding>
+					<div class="details">
+						<h3>{{shootdetails.club_name}}</h3>
+						<p *ngIf="S_month!=E_month"><b>Date: </b> {{shootdetails.shoot_date | date:'MMM dd'}}-{{shootdetails.shoot_end_date | date:'MMM dd, yyyy'}} </p>
+						<p *ngIf="(S_month==E_month)&&(S_date!=E_date)"><b>Date: </b> {{shootdetails.shoot_date | date:'MMM'}} {{date}}, {{shootdetails.shoot_end_date | date:'yyyy'}} </p>
+						<p *ngIf="(S_date==E_date)&& (S_month==E_month)"><b>Date: </b> {{shootdetails.shoot_date | date:'MMM dd'}}, {{shootdetails.shoot_end_date | date:'yyyy'}}</p>
+						<p style="margin-top:0px;"><b>Address: </b> {{shootdetails.shoot_address}} </p>
+						<p style="margin-top:0px;"><b>City: </b> {{shootdetails.city}}</p>
+						<p style="margin-top:0px;"><b>State: </b> {{shootdetails.state}}</p>
+						<p style="margin-top:0px;"><b>Zip Code: </b> {{shootdetails.zip_code}}</p>
+						<p style="margin-top:0px;word-wrap: break-word;" (click)="openUrl(shootdetails.url)" *ngIf="shootdetails.url"><b></b>
+							<p><a href="{{shootdetails.url}}">{{shootdetails.url}}</a>
+						</p>
+						<!-- 
+					<h3 text-center style="margin-top:0px;">Contact Details</h3>
+					 <p  style="margin-top:0px;"  *ngIf="shootdetails.contact_firstname"><b >Name </b>: {{shootdetails.contact_firstname}} {{shootdetails.contact_lastname}}</p> 
+					<a href="mailto:{{shootdetails.contact_email}}" target="_top"> 
+					 <p  style="margin-top:0px;"  *ngIf="shootdetails.contact_email"><b >Email </b>: {{shootdetails.contact_email}}</p></a> 
+					<a href="tel:{{shootdetails.phone_number}}" >
+					 <p  style="margin-top:0px;"  *ngIf="shootdetails.phone_number"><b >Contact No. </b>: {{shootdetails.phone_number}}</p></a> 
+					<p class="blueText" style="margin-top:0px;"  *ngIf="shootdetails.url" (click)="openUrl(shootdetails.url)"><b  >Url  </b>: {{shootdetails.url}}</p>  -->
+					</div>
+				</ion-col>
+				<ion-col width-50 style="margin-right:0px" push-right>
+					<div #map id="map" *ngIf="lat"></div>
+					<img src="images/map1.jpg" *ngIf="!lat" height="100px" width="150px">
+					<p *ngIf="!lat">No Address Found</p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+	<div>
+		<ion-row>
+			<ion-slides *ngIf="banners.length > 0" autoplay="3000" loop="true" speed="2000">
+				<ion-slide *ngFor="let banner of banners[0]">
+					<div class="list_banner">
+						<img class="img-responsive" src="{{banner?.image}}" />
+					</div>
+				</ion-slide>
+			</ion-slides>
+			<!-- <div class="list_banner">
+				<img class="img-responsive" src="{{banners}}" />
+			</div> -->
+		</ion-row>
+	</div>
+	<div *ngIf="shootdetails.events != '' && shootdetails.events" class="upcommingShoots note_bg">
+		<ion-grid padding>
+			<ion-row>
+				<ion-col width-30 text-center><strong><u>Date</u></strong></ion-col>
+				<ion-col width-20 text-center><strong><u>Ev #</u></strong></ion-col>
+				<ion-col width-25 text-center><strong><u>Type</u></strong></ion-col>
+				<ion-col width-20 text-center><strong><u>#</u></strong></ion-col>
+			</ion-row>
+			<div class="line"></div>
+			<ion-row *ngFor="let shoot of shootdetails.events; let i = index">
+				<ion-col width-30 text-center>{{shoot.start_date | date : 'MMM dd, yyyy'}} </ion-col>
+				<ion-col width-20 text-center> {{shoot.event_no}}</ion-col>
+				<ion-col width-25 text-center>{{shoot.typename}}</ion-col>
+
+				<ion-col width-20  text-center *ngIf="shoot.targets">{{shoot.targets}}</ion-col>
+				<ion-col width-20  text-center *ngIf="shoot.maxscore && !shoot.targets ">{{shoot.maxscore}}</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>
+<ion-footer>
+	<div padding *ngIf="shootdetails.is_my_shoot==0">
+		<button ion-button block (click)="addShootTomyShoots()" class="addShootButton">Add Shoot to My Shoots</button>
+	</div>
+	<div padding *ngIf="shootdetails.is_my_shoot==1">
+		<button ion-button block color="light" class="addShootButton">Added to My Shoots</button>
+	</div>
+</ion-footer>

@@ -1,0 +1,30 @@
+page-settings {
+    ion-list button{ background:#ececec !important; border-bottom:1px solid #fff !important; color:#000;}
+	.item-inner{ border-bottom: none !important; background-image: none !important;}
+	.customIcon{position: absolute;top: 30%; font-size: 22px; right: 7px; color:#b7b7b7;}
+	.btn_for_setting{width: 94%;margin-left: 3%;margin-right: 3%;margin-top: 5%; padding-left: 10%}
+	.icon_forword{margin-right: 2%;float: right}
+	.setting{
+		margin-left: -20%;
+	}
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}

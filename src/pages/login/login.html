@@ -1,0 +1,28 @@
+
+
+<ion-content padding class="login-background" scroll="false">
+		<ion-grid>
+		<ion-row text-center>
+
+			<ion-col>	<img src="images/the_trap_app_logo_b.png" alt="" class="logo"></ion-col>
+
+		</ion-row>
+	</ion-grid>
+	<!-- <h3 class="title-head">Trap App</h3> -->
+	<form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+		<ion-list class="noBg">
+		  <ion-item>
+		    <ion-input text-center type="text" name="email" [(ngModel)]="loginCredentials.email" required placeholder="Email address"></ion-input>
+		  </ion-item>
+		  <ion-item>
+		    <ion-input text-center type="password" placeholder="Password" name="password" [(ngModel)]="loginCredentials.password" required></ion-input>
+		  </ion-item>
+		</ion-list>
+		<button class="login_button" text-capitalize ion-button block  type="submit" [disabled]="!loginForm.form.valid">Login</button>
+		<p class="registerTxt" text-center>Do not have an account? <span (click)="openRegistrationPage()">Register</span></p>
+			<p class="registerTxt" text-center  (click)="profileManagePage()" ><u>Forgot Password?</u></p>
+		<div class="height20"></div>
+		<p class="registerTxt" text-center>Or login with Facebook</p>
+		</form>
+		<button class="fblogin_button" (click)="doFbLogin()" ion-button block text-capitalize>Facebook</button>
+</ion-content>

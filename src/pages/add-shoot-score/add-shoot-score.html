@@ -1,0 +1,62 @@
+<!--
+  Generated template for the AddShootScore page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="hidebackIcon">
+
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title text-center>Add Score</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<p class="shootname" no-padding>{{shootdetails.shoot_name}}</p>
+	<div class="line"></div>
+	<div *ngIf="shootdetails.events != ''" class="row">
+		<div class="icon"></div>
+		<div class="titleCol">
+			<p class="titles">Event Name</p>
+		</div>
+		<div class="lavelCol">
+			<p class="titles">Type</p>
+		</div>
+		<div class="dateCol" text-center>
+			<p class="titles">Date</p>
+		</div>
+	</div>
+	<div class="linee"></div>
+	<div class="row1" *ngFor="let event of shootdetails.events; let i = index">
+		<div class="icon" (click)="addShootDetails($event,shootdetails,event)"><img src="images/add@3x.png" /></div>
+		<div class="titleCol">
+			<!-- <p class="shootName" text-capitalize>{{event.event_name}}</p> -->
+			<!-- <p class="shootName" *ngIf="event.event_name == '' || !event.event_name" text-capitalize>Event#{{event_no}}</p> -->
+			<p class="shootName" (click)="addShootDetails($event,shootdetails,event)">Event# {{event.event_no}}</p>
+		</div>
+		<div class="lavelCol">
+			<p class="title">{{event.typename}}</p>
+		</div>
+		<div class="dateCol" text-center>
+			<p class="title">{{event.start_date | date : 'MM/dd/yy'}}</p>
+		</div>
+	</div>
+
+	<div class="line"></div>
+	<div class="row2">
+		<div class="icon" (click)="addShootDetailsNew($event,shootdetails)"><img src="images/add@3x.png" ></div>
+		<div class="titleCol" (click)="addShootDetailsNew($event,shootdetails)">
+			<p class="shootName">New Event</p>
+		</div>
+		<div class="lavelCol">
+			<p class="title"></p>
+		</div>
+		<div class="dateCol" text-center>
+			<p class="title"></p>
+		</div>
+	</div>
+
+</ion-content>

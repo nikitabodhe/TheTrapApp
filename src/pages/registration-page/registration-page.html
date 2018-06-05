@@ -1,0 +1,51 @@
+
+
+<ion-content padding class="login-background" scroll="false"> 
+
+	<h3 class="title-head">Create Account</h3> 
+	<form (ngSubmit)="register(registerCredentials)" #registerForm="ngForm">
+	<ion-list class="noBg">  
+	  <!--<p>
+	    <small class="up" *ngIf="checkpass">
+	      <strong>  password Not match !</strong>
+	    </small>
+	 </p> -->
+	 <ion-item>
+	    <ion-label floating>Name</ion-label>
+	    <ion-input type="text" name="name" [(ngModel)]="registerCredentials.name" required></ion-input>
+	  </ion-item>
+	  <ion-item>
+	    <ion-label floating>Email Address</ion-label>
+	    <ion-input type="email" name="username" (input)="Email(registerCredentials.username)" [(ngModel)]="registerCredentials.username" required></ion-input>
+	  </ion-item> 
+		 <ion-item *ngIf="checkEmail">
+	    <p color="danger">Please Enter Valid Email !</p>
+	  </ion-item>
+	  <ion-item>
+	    <ion-label floating>Password</ion-label>
+	    <ion-input type="password" minlength="6" name="password" (input)="onChangepass($event.target.value)" [(ngModel)]="registerCredentials.password" required></ion-input>
+	  </ion-item>
+		  <ion-item *ngIf="checkpasss">
+	    <p color="danger">Password must be 6 digit length!</p>
+	  </ion-item>
+	  <ion-item>
+	    <ion-label floating>Re-Type Password</ion-label>
+	    <ion-input type="password" minlength="6" name="passwordR" (input)="onChange($event.target.value)" [(ngModel)]="passwordR" required></ion-input>
+	  </ion-item>
+		<ion-item *ngIf="checkpass">
+	    <p color="danger">Password didn't match !</p>
+	  </ion-item>
+	  <ion-item no-lines>
+		  <ion-label >I agree with the Terms of Service & Privacy Policy </ion-label>
+		  <ion-checkbox color="dark" name="terms" [(ngModel)]="registerCredentials.terms" [checked]="registerCredentials.terms" required></ion-checkbox>
+		</ion-item>
+					<p (click)="termsAndroid()" class="terms" text-center showWhen="android"><u>Terms of Service & Privacy Policy</u></p>
+						<p (click)="termsIos()" class="terms" text-center showWhen="ios"><u>Terms of Service & Privacy Policy</u></p>
+	</ion-list>   
+	<button class="login_button" type="submit"  text-capitalize ion-button block>Register</button>
+	<p class="registerTxt" text-center>Already have an account? <span (click)="openLoginPage()"><u>Login</u></span></p>
+
+		<p class="registerTxt" text-center><span (click)="pushFb()">Would you like to sign up with <u>Facebook?</u></span></p>
+	</form>
+
+</ion-content>

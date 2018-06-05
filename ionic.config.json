@@ -1,0 +1,8 @@
+{
+  "name": "TrapApp",
+  "app_id": "02fb8346",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,0 +1,245 @@
+<ion-header class="hidebackIcon">
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Classify Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!-- <ion-item>
+    <ion-datetime text-center displayFormat="YYYY" pickerFormat="YYYY" (ngModelChange)="onChange($event)" [(ngModel)]="targetYear"></ion-datetime>
+  </ion-item> -->
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col class="shots_filterArea"></ion-col>
+      <ion-col text-center>
+        <div class="shots_filterArea">
+          <ion-list>
+            <ion-item>
+              <ion-label>Target Year</ion-label>
+              <ion-select (ngModelChange)="filterByTargetYear($event)" [(ngModel)]="targetYears" cancelText="Cancel" okText="Confirm"
+                placeholder="Target Year" class="select_for_target">
+                <ion-option value="all">All</ion-option>
+                <ion-option *ngFor="let years of targetYear" value="{{years.year}}">{{years.year}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+      <ion-col class="shots_filterArea"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="segmentArea">
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="sgl">
+        SGL
+      </ion-segment-button>
+      <ion-segment-button value="dbl">
+        DBL
+      </ion-segment-button>
+      <ion-segment-button value="hdcp">
+        HDCP
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <p *ngIf="noMyAvgScores" text-center> No scores found</p>
+
+  <ion-grid class="firstTable" *ngIf="!noMyAvgScores">
+    <div [ngSwitch]="segment">
+      <div *ngSwitchCase="'sgl'">
+        <ion-row class="noPadding" style="padding-left: 4px;">
+          <ion-col width-50 *ngIf="!noMyAvgScores">
+            <ion-row>
+              <ion-col width-50 text-center><b><u> Avg</u></b></ion-col>
+              <ion-col width-50 text-center><b><u>Total</u></b></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-50 text-center>{{myAvgScores.singles.average}}</ion-col>
+              <ion-col width-50 text-center>{{myAvgScores.singles.total}}</ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col width-50 class="borderLeft" *ngIf="!noMyAvgScores">
+            <ion-row>
+              <ion-col width-50 text-center><b><u>Last 500</u></b></ion-col>
+              <ion-col width-50 text-center><b><u>Last year</u></b></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-50 text-center>{{(myAvgScores.singles.fivehundred=='0')?'N/A':myAvgScores.singles.fivehundred}}</ion-col>
+              <ion-col width-50 text-center>{{(myAvgScores.singles.onethousand==null)?'-':myAvgScores.singles.onethousand}}</ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-scroll class="scrollSecond" scrollY="true" *ngIf="!noMyAvgScores">
+          <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row class="header_for_all">
+                  <ion-col width-20 class="date_col"> <b><u> Date</u></b></ion-col>
+                  <ion-col width-20><b><u>Sh Name</u></b></ion-col>
+                  <ion-col width-20><b><u>Score</u></b></ion-col>
+                  <ion-col width-20><b><u>W/T</u></b></ion-col>
+                  <ion-col width-20><b><u>Place</u></b></ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.typename == 'Singles'" class="content_for_all">
+                    <ion-col width-30 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd'}}</p>
+                    </ion-col>
+                    <ion-col width-20 text-capitalize class="text-wrap" style="padding-left:0px" text-center>{{event.shoot_name}}</ion-col>
+                    <ion-col width-20 text-center>{{event.score}}</ion-col>
+                    <ion-col width-20 *ngIf="!event.class_name&&!event.category_name" text-center>-</ion-col>
+                    <ion-col width-20 *ngIf="event.class_name" text-center>W-{{event.class_name}}</ion-col>
+                    <ion-col width-20 *ngIf="event.category_name" text-center>W-{{event.category_name}}</ion-col>
+                     <ion-col width-20 *ngIf="event.earned_yardage" text-center>W-{{event.earned_yardage}}</ion-col>
+                     <ion-col width-20 text-center>{{event.place_name}}</ion-col>
+                     
+                  </ion-row>
+                  <!-- <p  *ngIf="event.typename != 'Singles'" text-center>No Events Found</p> -->
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-scroll>
+      </div>
+      <div *ngSwitchCase="'dbl'">
+        <ion-row class="noPadding" style="padding-left: 4px;">
+          <ion-col width-50 *ngIf="!noMyAvgScores">
+            <ion-row>
+              <ion-col width-50 text-center><b><u>Avg</u></b></ion-col>
+              <ion-col width-50 text-center><b><u>Total</u></b></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-50 text-center>{{myAvgScores.doubles.average}}</ion-col>
+              <ion-col width-50 text-center>{{myAvgScores.doubles.total}}</ion-col>
+            </ion-row>
+
+          </ion-col>
+          <ion-col width-50 class="borderLeft" *ngIf="!noMyAvgScores">
+            <ion-row>
+              <ion-col width-50 text-center><b><u> Last 500</u></b></ion-col>
+              <ion-col width-50 text-center><b><u>Last year</u></b></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-50 text-center>{{(myAvgScores.doubles.fivehundred=='0')?'N/A':myAvgScores.doubles.fivehundred}}</ion-col>
+              <ion-col width-50 text-center>{{(myAvgScores.doubles.onethousand==null)?'-':myAvgScores.doubles.onethousand}}</ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-scroll class="scrollSecond" scrollY="true" *ngIf="!noMyAvgScores">
+          <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row class="header_for_all">
+                  <ion-col width-20 class="date_col"> <b><u> Date</u></b></ion-col>
+                  <ion-col width-20><b><u>Sh Name</u></b></ion-col>
+                  <ion-col width-20><b><u>Score</u></b></ion-col>
+                  <ion-col width-20><b><u>W/T</u></b></ion-col>
+                   <ion-col width-20><b><u>Place</u></b></ion-col>
+                     
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist.slice().reverse()">
+                  <ion-row *ngIf="event.typename == 'Doubles'" class="content_for_all">
+                    <ion-col width-30 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd'}}</p>
+                    </ion-col>
+                    <ion-col width-20 text-capitalize class="text-wrap" style="padding-left:0px" text-center>{{event.shoot_name}}</ion-col>
+                    <ion-col width-20 text-center>{{event.score}}</ion-col>
+                    <ion-col width-20 *ngIf="!event.class_name&&!event.category_name" text-center>-</ion-col>
+                    <ion-col width-20 *ngIf="event.class_name" text-center>W-{{event.class_name}}</ion-col>
+                    <ion-col width-20 *ngIf="event.category_name" text-center>W-{{event.category_name}}</ion-col>
+                     <ion-col width-20 *ngIf="event.earned_yardage" text-center>W-{{event.earned_yardage}}</ion-col>
+                     <ion-col width-20 text-center>{{event.place_name}}</ion-col>
+                      
+                  </ion-row>
+                  <!-- <p  *ngIf="event.typename != 'doubles'" text-center>No Events Found</p> -->
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-scroll>
+      </div>
+      <div *ngSwitchCase="'hdcp'">
+        <ion-row class="noPadding" style="padding-left: 4px;">
+          <ion-col width-50 *ngIf="!noMyAvgScores">
+            <ion-row>
+              <ion-col width-50 text-center><b><u>Avg</u></b></ion-col>
+              <ion-col width-50 text-center><b><u>Total</u></b></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-50 text-center>{{myAvgScores.handicap.average}}</ion-col>
+              <ion-col width-50 text-center>{{myAvgScores.handicap.total}}</ion-col>
+            </ion-row>
+
+          </ion-col>
+          <ion-col width-50 class="borderLeft" *ngIf="!noMyAvgScores">
+            <ion-row>
+              <ion-col width-50 text-center><b><u>Last 500</u></b></ion-col>
+              <ion-col width-50 text-center><b><u>Last year</u></b></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-50 text-center>{{(myAvgScores.handicap.fivehundred=='0')?'N/A':myAvgScores.handicap.fivehundred}}</ion-col>
+              <ion-col width-50 text-center>{{(myAvgScores.handicap.onethousand==null)?'-':myAvgScores.handicap.onethousand}}</ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-scroll class="scrollSecond" scrollY="true" *ngIf="!noMyAvgScores">
+          <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row class="header_for_all">
+                  <ion-col width-20 class="date_col"> <b><u> Date</u></b></ion-col>
+                  <ion-col width-20><b><u>Sh Name</u></b></ion-col>
+                  <ion-col width-20><b><u>Score</u></b></ion-col>
+                  <ion-col width-20><b><u>W/T</u></b></ion-col>
+                  <ion-col width-20><b><u>Place</u></b></ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.typename == 'Handicap'" class="content_for_all">
+                    <ion-col width-30 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd'}}</p>
+                    </ion-col>
+                    <ion-col width-20 text-capitalize class="text-wrap" style="padding-left:0px" text-center>{{event.shoot_name}}</ion-col>
+                    <ion-col width-20 text-center>{{event.score}}</ion-col>
+                    <ion-col width-20 *ngIf="!event.class_name&&!event.category_name&&!event.earned_yardage" text-center>-</ion-col>
+                    <ion-col width-20 *ngIf="event.class_name" text-center>W-{{event.class_name}}</ion-col>
+                    <ion-col width-20 *ngIf="event.category_name" text-center>W-{{event.category_name}}</ion-col>
+                    <ion-col width-20 *ngIf="event.earned_yardage" text-center>W-{{event.earned_yardage}}</ion-col>
+                     <ion-col width-20 text-center>{{event.place_name}}</ion-col>
+                     
+                  </ion-row>
+                  <!-- <p  *ngIf="event.typename != 'handicap'" text-center>No Events Found</p> -->
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-scroll>
+      </div>
+    </div>
+    <!--<ion-row *ngIf="myAvgScores.curent_target_year">
+    <ion-col width-50>
+      <ion-row *ngIf="myAvgScores.curent_target_year.avg1">
+        <ion-col width-15>Avg1</ion-col>
+        <ion-col width-50 text-center>{{myAvgScores.curent_target_year.avg1 | number : '1.2-2'}}</ion-col>
+        <ion-col width-33 text-center>{{myAvgScores.curent_target_year.total1}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="myAvgScores.curent_target_year.avg2">
+        <ion-col width-15>Avg2</ion-col>
+        <ion-col width-50 text-center>{{myAvgScores.curent_target_year.avg2 | number : '1.2-2'}}</ion-col>
+        <ion-col width-33 text-center>{{myAvgScores.curent_target_year.total2}}</ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>-->
+  </ion-grid>
+
+</ion-content>

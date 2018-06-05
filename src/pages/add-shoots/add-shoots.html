@@ -1,0 +1,89 @@
+<!--
+  Generated template for the AddShoots page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="hidebackIcon">
+
+  <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Add Score</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content>
+	
+	<div class="row">
+	  	<div class="icon"></div>
+	  	<div class="titleCol"><p class="titles">Shoot Name</p></div>
+	  	<div class="lavelCol"><p class="titles">Level</p></div>
+	  	<div class="dateCol" text-center><p class="titles">Date</p></div>
+		
+	</div>
+		<div class="line"></div>
+	<div class="row" *ngFor="let shoot of allShoots">
+	  	<div class="icon" (click)="addShootDetails($event,shoot)"><img src="images/add@3x.png" /></div>
+	  	<div class="titleCol" (click)="addShootDetails($event,shoot)"><p class="shootName" text-capitalize>{{shoot.shoot_name}}</p></div>
+	  	<div class="lavelCol"><p class="title">{{shoot.levelname}}</p></div>
+	  	<div class="dateCol" text-center><p *ngIf="shoot.shoot_date != '0000-00-00 00:00:00' " class="title">{{shoot.shoot_date | date : 'MM/dd/yy'}}</p></div>
+
+	</div>
+	
+	<div class="line"></div>
+	<div class="row" (click)="addNewShootPage('ATA',1)">
+	  	<div class="icon" ><img src="images/add@3x.png" /></div>
+	  	<div class="titleCol" ><p class="shootName">New ATA Shoot</p></div>
+	  	<div class="lavelCol"><p class="title"></p></div>
+	  	<div class="dateCol" text-center><p class="title"></p></div>
+			 <ion-icon class="customIcon" name="ios-arrow-forward" item-right></ion-icon>
+	</div>
+	<div class="line"></div>
+	<div class="row" (click)="addNewShootPage('PITA',2)">
+	  	<div class="icon" ><img src="images/add@3x.png" /></div>
+	  	<div class="titleCol"><p class="shootName">New PITA Shoot</p></div>
+	  	<div class="lavelCol"><p class="title"></p></div>
+	  	<div class="dateCol" text-center><p class="title"></p></div>
+			 <ion-icon class="customIcon" name="ios-arrow-forward" item-right></ion-icon>
+	</div>
+	<div class="line"></div>
+		<div class="row" (click)="addNewShootPage('LEAGUE',3)">
+	  	<div class="icon" ><img src="images/add@3x.png" /></div>
+	  	<div class="titleCol" ><p class="shootName">New League Shoot</p></div>
+	  	<div class="lavelCol"><p class="title"></p></div>
+	  	<div class="dateCol" text-center><p class="title"></p></div>
+			 <ion-icon class="customIcon" name="ios-arrow-forward" item-right></ion-icon>
+	</div>
+	<div class="line"></div>
+		<div class="row" (click)="addNewShootPage('PRACTICE',4)" lines>
+	  	<div class="icon" ><img src="images/add@3x.png" /></div>
+	  	<div class="titleCol" ><p class="shootName">New Practice Shoot</p></div>
+	  	<div class="lavelCol"><p class="title"></p></div>
+	  	<div class="dateCol" text-center><p class="title"></p></div>
+			 <ion-icon class="customIcon" name="ios-arrow-forward" item-right></ion-icon>
+	</div>
+	<div class="line"></div>
+ 
+	<!-- <ion-list *ngFor="let tempRange of ranges">
+
+		<ion-item >
+			<h2 item-left>1. {{tempRange.range}}/{{tempRange.roundLength}} </h2>
+			<ion-range name="range" [(ngModel)]="tempRange.range" min="0" max="{{tempRange.roundLength}}" color="primary" pin="false"></ion-range>
+		</ion-item>
+
+		<ion-row>
+			<ion-col>
+			
+				<button ion-button color="dark" (click)="deleteTrap(tempRange)" outline class="edit">+ Delete Trap</button>
+			</ion-col>
+		</ion-row>
+	</ion-list> 
+	<ion-row>
+			<ion-col>
+				<button ion-button color="dark" (click)="addTrap()" outline class="edit">+ Add Trap</button>
+				
+			</ion-col>
+		</ion-row> -->
+</ion-content>

@@ -1,0 +1,149 @@
+<!--
+  Generated template for the NoteDetails page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="hidebackIcon">
+  <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Note Details</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+    <ion-card-header class="header">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col width-10>
+            <ion-icon name="home"> </ion-icon>
+          </ion-col>
+          <ion-col width-90>
+            <p text-capitalize>{{noteDetails.shoot_name}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col width-10>
+            <ion-icon name="calendar"> </ion-icon>
+          </ion-col>
+          <ion-col width-20>
+            <h4> {{noteDetails.shoot_date | date}}</h4>
+          </ion-col>
+          <ion-col width-70></ion-col>
+        </ion-row>
+        <ion-row no-padding class="data">
+          <ion-col width-10>
+            <!-- <ion-icon name="calendar"> </ion-icon> -->
+             <ion-icon class="icon" ios="ios-aperture" md="md-aperture"></ion-icon>
+          </ion-col>
+          <ion-col width-70>
+            <p text-capitalize>{{noteDetails.levelname}} - {{traps}}</p>
+          </ion-col>
+          <ion-col width-20></ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col width-10>#</ion-col>
+          <ion-col width-20>
+            <h4 text-capitalize>Event #{{noteDetails.event_no}}</h4>
+          </ion-col>
+          <ion-col width-70></ion-col>
+        </ion-row>
+      </ion-grid>
+      <hr class="hr">
+    </ion-card-header>
+  </ion-card>
+   <ion-grid padding class="note_bg">
+      <!-- <h6>Event# {{noteDetails.event_no}}</h6> -->
+    <ion-row no-padding>
+      <ion-col width-20 class="score">
+          <p>{{noteDetails.score}}</p>
+      </ion-col>
+        <ion-col width-35>
+        <p *ngFor="let trap of noteDetails.traps; let i = index" > Trap {{i+1}} : {{trap.score}}/{{trap.maxscore}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+  <!-- <ion-card>
+     <ion-grid>
+      <ion-row class="info">
+        <ion-col width-20  *ngIf="noteDetails.earned_yardage">
+          <img src="images/trophy.png" alt="" *ngIf="noteDetails.earned_yardage && noteDetails.categoryname && noteDetails.place_name">
+        </ion-col>
+         <ion-col width-20  *ngIf="noteDetails.type_id!=3">
+          <img src="images/trophy.png" alt="" *ngIf="(noteDetails.class_name || noteDetails.categoryname) && noteDetails.place_name">
+        </ion-col>
+        <ion-col width-50>
+          <p *ngIf="noteDetails.class_name" class="data">{{noteDetails.class_name}} Class </p>
+           <p *ngIf="noteDetails.categoryname" class="data">{{noteDetails.categoryname}} Category </p>
+           <p *ngIf="noteDetails.earned_yardage" class="data">{{noteDetails.earned_yardage}} Yardage </p>
+        </ion-col>
+         <ion-col width-30>
+          <p *ngIf="noteDetails.place_name" class="data">{{noteDetails.place_name}} Place</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+    <hr/>
+    <ion-card-header class="note">
+      <h1>Note</h1>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        {{noteDetails.note}}
+      </p>
+    </ion-card-content>
+  </ion-card> -->
+
+    <ion-card>
+    <ion-grid style="margin-top:3%;">
+      <ion-row class="info" >
+        <ion-col width-20 *ngIf="noteDetails.type_id!='3'">
+          <img *ngIf="(noteDetails.class_name || noteDetails.categoryname)&& noteDetails.place_name" src="images/trophy.png"
+            alt="">
+        </ion-col>
+        <ion-col width-20 *ngIf="noteDetails.type_id=='3'">
+          <img *ngIf="(noteDetails.yardage_value || noteDetails.categoryname) && noteDetails.place_name" src="images/trophy.png"
+            alt="">
+        </ion-col>
+        <ion-col width-40 *ngIf="noteDetails.type_id!='3'">
+          <p *ngIf="noteDetails.class_name" class="class"><b>Class :</b> {{noteDetails.class_name}} </p>
+          <p *ngIf="noteDetails.categoryname" class="class"><b> Category:</b> {{noteDetails.categoryname}} </p>
+        </ion-col>
+        <ion-col width-40 *ngIf="noteDetails.type_id=='3'">
+          <p *ngIf="noteDetails.yardage_value" class="class"><b>Yardage:</b> {{noteDetails.yardage_value}} </p>
+          <p *ngIf="noteDetails.categoryname" class="class"><b> Category:</b> {{noteDetails.categoryname}} </p>
+             <p *ngIf="noteDetails.earned_yardage_value" class="class"><b>Earned Yardage:</b> {{noteDetails.earned_yardage_value}} </p>
+        </ion-col>
+        <ion-col width-40>
+          <p *ngIf="noteDetails.place_name" class="class"><b>Place :</b> {{noteDetails.place_name}} </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   <ion-grid padding>
+     <ion-row >
+      
+       <ion-col>
+      <ion-card-content class="square">
+      <h3 class="Note"><b>Note :</b></h3>
+      <p>
+        {{noteDetails.note}}
+      </p>
+    </ion-card-content>
+       </ion-col>
+      
+     </ion-row>
+   </ion-grid>
+
+    <!-- <ion-card-content padding class="square">
+      <h3 class="Note"><b>Note :</b></h3>
+      <p>
+      
+      </p>
+    </ion-card-content> -->
+  </ion-card>
+   <div padding>
+    <button (click)="noteEdit($event,noteDetails)" ion-button block>Edit</button>
+  </div> 
+</ion-content>

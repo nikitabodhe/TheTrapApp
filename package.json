@@ -1,0 +1,165 @@
+{
+  "name": "TrapApp",
+  "author": "Ionic Framework",
+  "homepage": "http://ionicframework.com/",
+  "private": true,
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve"
+  },
+  "dependencies": {
+    "@angular/common": "2.2.1",
+    "@angular/compiler": "^2.2.1",
+    "@angular/compiler-cli": "^2.2.1",
+    "@angular/core": "^2.2.1",
+    "@angular/forms": "2.2.1",
+    "@angular/http": "2.2.1",
+    "@angular/platform-browser": "2.2.1",
+    "@angular/platform-browser-dynamic": "2.2.1",
+    "@angular/platform-server": "2.2.1",
+    "@ionic-native/badge": "^4.3.0",
+    "@ionic-native/browser-tab": "^4.1.0",
+    "@ionic-native/camera": "^3.14.0",
+    "@ionic-native/core": "^3.12.1",
+    "@ionic-native/deeplinks": "^4.5.2",
+    "@ionic-native/device": "^3.14.0",
+    "@ionic-native/facebook": "^3.14.0",
+    "@ionic-native/geolocation": "^3.12.2",
+    "@ionic-native/google-maps": "^3.14.0",
+    "@ionic-native/google-plus": "^4.5.3",
+    "@ionic-native/in-app-browser": "^4.5.3",
+    "@ionic-native/native-page-transitions": "^4.1.0",
+    "@ionic-native/native-storage": "^4.5.3",
+    "@ionic-native/push": "^3.14.0",
+    "@ionic-native/screen-orientation": "^4.5.3",
+    "@ionic-native/splash-screen": "^4.5.3",
+    "@ionic-native/status-bar": "^4.5.3",
+    "@ionic-native/transfer": "^3.13.1",
+    "@ionic/cloud-angular": "^0.11.0",
+    "@ionic/storage": "1.1.7",
+    "build": "^0.1.4",
+    "chart.js": "^2.5.0",
+    "com.telerik.plugins.nativepagetransitions": "^0.6.5",
+    "cordova-android": "~6.3.0",
+    "cordova-ios": "~4.4.0",
+    "cordova-plugin-badge": "^0.8.7",
+    "cordova-plugin-browsertab": "^0.2.0",
+    "cordova-plugin-camera": "^2.4.1",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-facebook4": "^1.9.1",
+    "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-filepath": "^1.2.0",
+    "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-googlemaps": "^1.4.5",
+    "cordova-plugin-googleplus": "^5.2.1",
+    "cordova-plugin-inappbrowser": "^1.7.2",
+    "cordova-plugin-nativestorage": "^2.3.0",
+    "cordova-plugin-screen-orientation": "^3.0.1",
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar": "2.2.1",
+    "cordova-plugin-whitelist": "1.3.1",
+    "cordova-promise-polyfill": "0.0.2",
+    "datepicker-ionic2": "^2.5.1",
+    "es6-promise-plugin": "^4.2.2",
+    "finalhandler": "^1.1.0",
+    "ionic-angular": "2.0.1",
+    "ionic-native": "2.4.1",
+    "ionic-plugin-deeplinks": "^1.0.15",
+    "ionicons": "3.0.0",
+    "ng2-ion-range-slider": "^1.0.3",
+    "ngx-pipes": "^2.1.7",
+    "phonegap-plugin-push": "^2.1.0",
+    "pipe": "^1.1.0",
+    "rxjs": "5.0.0-beta.12",
+    "sw-toolbox": "3.4.0",
+    "typescript": "^2.3.4",
+    "zone.js": "0.6.26"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "^1.3.7",
+    "@ionic/cli-plugin-cordova": "1.6.2",
+    "ionic": "3.7.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-whitelist",
+    "cordova-plugin-console",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    {
+      "variables": {
+        "SENDER_ID": "553532311039"
+      },
+      "locator": "phonegap-plugin-push"
+    }
+  ],
+  "cordovaPlatforms": [],
+  "description": "TrapApp: An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "To update profile picture",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "To store captured pictures in your library"
+      },
+      "cordova-plugin-facebook4": {
+        "APP_ID": "1511175088938670",
+        "APP_NAME": "The Trap App"
+      },
+      "cordova-plugin-browsertab": {},
+      "com.telerik.plugins.nativepagetransitions": {},
+      "cordova-plugin-inappbrowser": {},
+      "ionic-plugin-deeplinks": {
+        "URL_SCHEME": "trapapp",
+        "DEEPLINK_SCHEME": "https",
+        "DEEPLINK_HOST": "bizmoapps.com/trapapp",
+        "ANDROID_PATH_PREFIX": "/",
+        "ANDROID_2_PATH_PREFIX": "/",
+        "ANDROID_3_PATH_PREFIX": "/",
+        "ANDROID_4_PATH_PREFIX": "/",
+        "ANDROID_5_PATH_PREFIX": "/",
+        "DEEPLINK_2_SCHEME": " ",
+        "DEEPLINK_2_HOST": " ",
+        "DEEPLINK_3_SCHEME": " ",
+        "DEEPLINK_3_HOST": " ",
+        "DEEPLINK_4_SCHEME": " ",
+        "DEEPLINK_4_HOST": " ",
+        "DEEPLINK_5_SCHEME": " ",
+        "DEEPLINK_5_HOST": " "
+      },
+      "com.googlemaps.ios": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.553532311039-crj48vklu7qf14nbor68n9gl0fpqbgdj"
+      },
+      "cordova-plugin-compat": {},
+      "cordova-plugin-badge": {},
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyCFEDoaWvGrKOQk96_DAUCb4qEoLqHsq0U",
+        "API_KEY_FOR_IOS": "AIzaSyCFEDoaWvGrKOQk96_DAUCb4qEoLqHsq0U"
+      },
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-nativestorage": {},
+      "cordova-plugin-file": {},
+      "cordova-promise-polyfill": {},
+      "cordova-plugin-filepath": {},
+      "phonegap-plugin-push": {
+        "FCM_VERSION": "11.0.1"
+      }
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}

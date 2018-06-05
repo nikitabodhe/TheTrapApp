@@ -1,0 +1,84 @@
+page-registration-page {
+
+	ion-content{ 
+		 background: url('../images/login_bg.png') no-repeat center center fixed; 
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover; 
+	}
+	#envelope{
+	  width: 100%;
+	  min-height: 100%;
+	  padding: 0;
+	  margin: 0;
+	  height: 100%;
+	  overflow: hidden;
+	}
+	h3.title-head{
+		
+		font-family: 'Lato', sans-serif;
+		font-weight:400;
+		font-size:24px;
+		text-align:center;
+		color: #ffffff;
+		padding-top: 30px;
+
+	}
+	.terms{color: white}
+	.noBg .item-md,.noBg .item-ios{ background:none;}
+	.login_button{ background:#fff; color:#f65e30; border-radius:0px;-moz-border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;
+	font-family: 'Lato', sans-serif; font-size:16px; font-weight:400; height:45px; }
+
+	.list-ios > .item-block:first-child{ border-top:none;}
+	.list-ios .item-block .item-inner{border-bottom:none;}
+	.list-md .item-block .item-inner{ border-bottom:none;}
+	.item-md.item-input.input-has-focus .item-inner {
+	  border-bottom: none;
+	  box-shadow: none;
+	}
+	.item-md.item-input.input-has-focus:last-child {
+	  border-bottom: none;
+	  box-shadow: none;
+	}
+	.item-md.item-input.input-has-focus:last-child {
+	  border-bottom: none;
+	  box-shadow: none;
+	}
+	.item.item-md .checkbox-md,.item.item-ios .checkbox-ios{    margin: 9px 10px 9px 0px;}
+	.item-md.item-checkbox,.item-checkbox.item-ios{color:#fff;font-family: 'Lato', sans-serif; font-weight:300; font-size:14px;}
+	.item-md,.item-ios{ padding-left:0px;}
+	ion-item.item-block {border-bottom:1px solid #fff;}
+	ion-item.item-block:last-child {border-bottom:none !important; margin-top:10px;}
+	.item-input .label-md, .item-select .label-md, .item-datetime .label-md,.label-ios{color:#fff;}
+	.input-has-focus .label-md[floating] {
+	  color: #fff;
+	}
+	p.registerTxt{color:#fff;font-family: 'Lato', sans-serif; font-weight:300;}
+	.registerTxt span{  color:#fff;font-family: 'Lato', sans-serif; font-weight:300;}
+	.text-input{ color:#fff;}
+	.list-md,.list-ios {
+    	margin: 0 0 40px 0;
+	}
+
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}

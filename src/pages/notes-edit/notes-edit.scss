@@ -1,0 +1,79 @@
+page-notes-edit {
+.header p{
+    font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.2em;
+    font-size: 20px;
+    word-wrap: break-word;
+    white-space: -moz-pre-wrap; 
+    white-space: pre-wrap;
+}
+.data p{
+font-size: 18px;
+color:#0072bc;
+
+}
+.range-ios.range-has-pin {
+  padding-top: 0px;
+}
+.range{
+    padding-top: 40px;
+}
+.edit{
+    text-align: center;
+    margin-left:30%;
+    margin-top: -10%;
+    
+}
+.info p{
+
+    font-size: 18px;
+    color:#000000;
+}
+.btn{
+    text-align: center;
+    margin-left:25%;
+    width:50%;
+}
+ion-card{margin:0px !important; box-shadow:none  !important;-moz-box-shadow:none  !important;-webkit-box-shadow:none  !important;}
+.bar-button-md{text-transform: capitalize;}
+.hidebackIcon .back-button-icon{ display:none;}
+.hidebackIcon .title.title-md{ width:80%;}
+.note_bg{ background:#f6f8fb;}
+.range-md.range-has-pin,.range{padding-top:0px;}
+
+
+ .note_grid .segmentArea { padding:0px;margin-top: 21px;}
+.note_grid .shots_filterArea {padding:0px; margin:0px; border-bottom:none;}
+.note_grid .shots_filterArea ion-item{padding:0px;}
+.note_grid .shots_filterArea ion-label{display:none;}
+.note_grid .shots_filterArea p{margin: 0px 0px 2px 0px;font-size: 12px;}
+.note_grid .shots_filterArea ion-select{ min-width:50px;}
+.shots_filterArea{ padding:0px 10px 10px; border-bottom:1px solid #ccc; margin-bottom:5px;} 
+.shots_filterArea ion-list{margin-bottom:0px;} 
+.shots_filterArea ion-label{margin:0px 0 4px 0;} 
+.shots_filterArea .select-md,.shots_filterArea .select-ios{padding: 6px 8px 6px 16px;border: 1px solid #ccc; min-width: 100px;clear: both;overflow: hidden; margin-bottom:2px;}
+ion-item .item-inner,.item-cover{ padding:0px;}
+.width40{width:49px;}
+.width100{ width:130px;}
+.width20{width: 32px; margin: 0 8px 0 15px !important;}
+.width30{ text-align: center;width: 30px;}
+}
+.toolbar-ios{
+    padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+    padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+    padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+    min-height: 35px !important;
+    height:auto !important;
+    padding-top: 7px !important;
+}
+.toolbar-ios
+{
+    padding-right: 10px !important;
+}

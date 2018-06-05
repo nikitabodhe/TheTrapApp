@@ -1,0 +1,189 @@
+<!--
+  Generated template for the ShootLeague page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="hidebackIcon">
+
+  <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Add Shoot</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+
+<ion-content>
+	<div class="shoot_dateNameArea">
+      <p class="shootNameTxt">Shoot name</p>
+      <h2>City Open Summer League</h2>
+    
+      <ion-grid class="datePicker">
+	    <ion-row>
+	      <ion-col width-50>
+	        <p class="dateLabel">Start</p>
+	        <ion-item>
+			  <ion-label>Start Time</ion-label>
+			  <ion-datetime displayFormat="DD/MM/YY" pickerFormat="DD/MM/YYYY" [(ngModel)]="timeStarts"></ion-datetime>
+			</ion-item>
+	      </ion-col>
+	      <ion-col width-50>
+	      	<p class="dateLabel">End</p> 
+	        <ion-item>
+			  <ion-label>End Time</ion-label>
+			  <ion-datetime displayFormat="DD/MM/YY" pickerFormat="DD/MM/YYYY" [(ngModel)]="timeEnds"></ion-datetime>
+			</ion-item>
+	      </ion-col>
+	    </ion-row>
+	    
+	  </ion-grid>
+	  <ion-grid class="datePicker">
+	    <ion-row>
+	      <ion-col>
+	        <p class="dateLabel">Level</p> 
+            <ion-item>
+              <ion-label>Level</ion-label>
+              <ion-select [(ngModel)]="level">
+                <ion-option value="2014">1</ion-option>
+                <ion-option value="2015">2</ion-option>
+              </ion-select>
+            </ion-item>
+	      </ion-col>
+	      
+	      <ion-col>
+	      	<p class="dateLabel">Type</p> 
+            <ion-item>
+              <ion-label>Type</ion-label>
+              <ion-select [(ngModel)]="type">
+                <ion-option value="2014">1</ion-option>
+                <ion-option value="2015">2</ion-option>
+              </ion-select>
+            </ion-item>
+	      </ion-col>
+	    </ion-row>
+	    
+	  </ion-grid>
+
+    </div>
+
+  <ion-grid class="note_bg">
+    <ion-row>
+      <ion-col>
+        <p style="text-align: center;font-size: 20px; margin:3px 0px;" color="primary">{{range1 + range2 + range3 + range4 }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width-100>
+        <ion-list no-lines>
+          <ion-item>
+            <h2 item-left> {{range1}}/25 </h2>
+            <ion-range [(ngModel)]="range1" min="0" max="25" color="primary" pin="false"></ion-range>
+            <ion-icon name="options" item-right></ion-icon>
+            <ion-icon name="ios-trash-outline" item-right></ion-icon>
+          </ion-item>
+          <ion-item>
+            <h2 item-left> {{range2}}/25 </h2>
+            <ion-range [(ngModel)]="range2" min="0" max="25" color="primary" pin="false"></ion-range>
+            <ion-icon name="options" item-right></ion-icon>
+            <ion-icon name="ios-trash-outline" item-right></ion-icon>
+          </ion-item>
+          <ion-item>
+            <h2 item-left> {{range3}}/25 </h2>
+            <ion-range [(ngModel)]="range3" min="0" max="25" color="primary" pin="false"></ion-range>
+            <ion-icon name="options" item-right></ion-icon>
+            <ion-icon name="ios-trash-outline" item-right></ion-icon>
+          </ion-item>
+          <ion-item>
+            <h2 item-left> {{range4}}/25 </h2>
+            <ion-range [(ngModel)]="range4" min="0" max="25" color="primary" pin="false"></ion-range>
+            <ion-icon name="options" item-right></ion-icon>
+            <ion-icon name="ios-trash-outline" item-right></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="dark" clear class="edit">+ Add Trapp</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+<ion-card>
+    <ion-grid class="note_grid">
+  <ion-row>
+    <ion-col width-20 style="padding-top:0px;">
+      <img src="images/trophy.png" alt="" style="max-width:90%;">
+    </ion-col>
+    <ion-col width-30 style="padding-top:0px;">
+      <div class="shots_filterArea">
+        <p>Category/Class</p>
+        
+            <ion-item>
+              
+              <ion-label>Category/Class</ion-label>
+              <ion-select [(ngModel)]="category">
+                <ion-option value="2014">2014</ion-option>
+                <ion-option value="2015">2015</ion-option>
+                <ion-option value="2016">2016</ion-option>
+                <ion-option value="2017">2017</ion-option>
+              </ion-select>
+            </ion-item>
+        
+      </div>
+    </ion-col>
+    <ion-col width-25 style="padding-top:0px;">
+      <div class="shots_filterArea">
+        <p>Place</p>
+       
+            <ion-item>
+              
+              <ion-label>Place</ion-label>
+              <ion-select [(ngModel)]="place">
+                <ion-option value="2014">2014</ion-option>
+                <ion-option value="2015">2015</ion-option>
+                <ion-option value="2016">2016</ion-option>
+                <ion-option value="2017">2017</ion-option>
+              </ion-select>
+            </ion-item>
+        
+      </div>
+    </ion-col>
+    <ion-col width-25 style="padding-top:0px;">
+      <div class="shots_filterArea">
+        <p>Earned</p>
+            <ion-item>
+              <ion-label>Earned</ion-label>
+              <ion-select [(ngModel)]="earned">
+                <ion-option value="2014">2014</ion-option>
+                <ion-option value="2015">2015</ion-option>
+                <ion-option value="2016">2016</ion-option>
+                <ion-option value="2017">2017</ion-option>
+              </ion-select>
+            </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  
+<hr>
+<ion-card-header class="note">
+  <h1>Note</h1>
+</ion-card-header>
+<ion-card-content>
+   <ion-item>
+   
+   <ion-textarea placeholder="enter your notes here..."> </ion-textarea>
+ </ion-item>
+
+
+</ion-card-content>
+
+</ion-card>
+ <div padding>
+    <button ion-button block>Submit</button>
+  </div>
+</ion-content>

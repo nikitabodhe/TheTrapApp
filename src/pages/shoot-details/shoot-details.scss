@@ -1,0 +1,78 @@
+page-shoot-details {
+	.header p{
+    font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.2em;
+    font-size: 20px;
+    word-wrap: break-word;
+    white-space: -moz-pre-wrap; 
+    white-space: pre-wrap;
+}
+.line{ border-bottom:1px solid #ccc; height:1px;} 
+
+
+.clubDetails h2{line-height: 1.2em;font-size: 18px;margin-top:0px;word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap; color:#000;}
+.clubDetails h3{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;font-size: 15px;margin-top:10px;word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap; color:#000;}
+.upcommingShoots h2{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;font-size: 16px;margin-top:0px;word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap; color:#000;}
+.upcommingShoots p{margin:3px 0;}
+.upcommingShoots ion-grid{padding:0 !important;}
+.clubDetails p.greyText{font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.2em;
+    font-size: 15px; color:#7d858b; margin:0px;}
+.clubDetails p.blueText{font-family: 'Lato', sans-serif;font-weight:400;line-height: 1.2em;
+    font-size: 12px; color:blue; margin:18px 0 6px 0;}
+.clubDetails p{line-height: 1.2em; margin:18px 0 6px 0;}
+.clubMap{}
+ion-card{margin:0px !important; box-shadow:none  !important;-moz-box-shadow:none  !important;-webkit-box-shadow:none  !important;}
+.bar-button-md{text-transform: capitalize;}
+.hidebackIcon .back-button-icon{ display:none;}
+.hidebackIcon .title.title-md{ width:80%;}
+.note_bg{ background:#f6f8fb;}
+
+.icon{ width: 40%; float:left; min-width:40%; min-height:1px; cursor:pointer;}
+.titleCol{ width: 40%; float:left;}
+.lavelCol{ width: 30%; float:left;}
+.dateCol{ width: 15%; float:left;}
+.row{ clear:both; overflow:hidden; padding: 5px 0 3px 3px;}  
+.row div{padding:5px;}
+p.title{font-family: 'Lato', sans-serif;font-weight:300;font-size: 13px; color:#a6a1a1; margin:0px;}
+	p.shootName{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;
+    font-size: 15px; color:#000; margin:0px;}
+ion-col{padding:10px 5px !important;}
+// .addShootButton{ height: 43px !important;
+//     margin-bottom: 10px; margin-top: -2%;} 
+     #map {
+        width: 100%;
+        height: 200px;
+      }
+ 	.list_banner {
+	  width:100%;
+      height: 100px;
+      background: #ececec;
+	}
+	.img-responsive {
+    width: 98%;
+    margin-left: 1%;
+    position: relative;
+    }
+.clubDetails h2{font-family: 'Lato', sans-serif;font-weight:600;font-size: 16px;}
+    
+    .clubDetails{padding-top: 2%;}
+}
+.toolbar-ios{
+    padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+    padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+    padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+    min-height: 35px !important;
+    height:auto !important;
+    padding-top: 7px !important;
+}
+.toolbar-ios
+{
+    padding-right: 10px !important;
+}

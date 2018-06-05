@@ -1,0 +1,146 @@
+// http://ionicframework.com/docs/v2/theming/
+// App Global Sass 
+
+.user_image{height: 65px;width: 65px;border-radius: 50%;}
+.header_for_menu{margin-top: 10%;margin-left: 7%;}
+.user_name{margin-left: -45%;color: white}
+.name_of_menu{margin-left: 2%;}
+.arrow_for_menu{margin-right: 5%; float: right}
+.powerd_by_image{border-radius: 5%; margin-bottom: 2%;margin-top: 2%;}
+
+.toolbar-md{ min-height:45px;}
+.toolbar-background-md,.toolbar-background-ios{background:#ec5e2f; }
+.bar-button-default-ios,.bar-button-default-md{color:#fff}
+ion-buttons[start] {order: 2;}
+
+.toolbar-title{color:#fff;font-family: 'Lato', sans-serif; font-size:18px; font-weight:300;}
+.customMenu .menu-inner{ background:#bc643c;}
+.customMenu .menu-inner ion-item{ background:#bc643c;}
+.customMenu .menu-inner ion-content{ background:#bc643c;}
+.customMenu button.item{ background:#bc643c; color:#fff;font-family: 'Lato', sans-serif; font-size:14px; font-weight:400;}
+.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{border-bottom:none;}
+
+
+.customMenu .list.list-ios{ margin:20px 0 20px 0;}
+.customMenu ion-label h2{ color:#fff;}
+.list-ios > .item-block:first-child{border-top:none;} 
+.header-md::after{background-image: none;}
+div.powered_byArea{ width:80%; margin:0 auto 0px;}
+div.powered_byArea img{ max-width:60%;}
+h3.title-head{font-family: 'Montserrat', sans-serif;font-weight:600;font-size:20px;	text-align:center;color: #ffffff;padding-top: 0px;}
+p.powertxt{ color:#fff; margin:2px 0 5px 0;}
+.displayN{ visibility:hidden;}
+ion-label h2{text-transform: capitalize;}
+p.green{ color:green !important;}
+p.blue{ color:blue !important;}
+p.prtc{ color:gray !important;} 
+.list_banner{ height:80px; overflow:hidden; padding:10px;}
+ion-header{background:#bc643c; overflow: hidden;}
+.spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+.item-inner{ border-bottom:none !important; padding-right:0px !important;}
+ion-card .item-inner{ border-bottom:none !important;}
+ion-textarea{border: 1px solid #ccc;padding: 10px;height: 100px;}
+.activeHighlight{ color:#000 !important;}
+.item-ios[detail-push] .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner{ background-image:none !important;}
+
+
+// .alert-radio-label{
+//   color: #bc643c;
+// }
+// .alert-md [aria-checked=true] .alert-radio-icon {
+//     border-color: #bc643c;
+// }
+// .alert-ios .alert-radio-icon {
+//     border-color: #bc643c;
+// }
+  .alert-ios [aria-checked=true] .alert-radio-inner{border-color: red;}
+.alert-md .alert-radio-inner {
+  background-color: #bc643c;
+}
+// .alert-md .alert-radio-icon {
+//    border-color: #bc643c;
+// }
+  .alert-md [aria-checked="true"] .alert-radio-icon {
+    border-color: #bc643c;
+}
+		
+// button.disable-hover.alert-button.alert-button-md.alert-button-default.alert-button-default-md{
+//   color: #bc643c;
+// }
+// button.disable-hover.alert-button.alert-button-ios.alert-button-default.alert-button-default-ios{
+//   color: #bc643c;
+// }
+.alert-md [aria-checked=true] .alert-radio-label {
+    color: #bc643c;
+}
+  .alert-ios [aria-checked=true] .alert-radio-label {
+    color: #bc643c;
+}
+//   .alert-title {
+//       color: red;
+//     margin: 0;
+//     padding: 0;
+// }
+
+  .range-ios .range-knob {
+    position: absolute;
+    top: 10px;
+    left: 7px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02);
+    pointer-events: none;
+}
+    .alert-ios .alert-message {
+    max-height: 400px !important;
+    font-size: 12px !important;
+    font-family: sans-serif !important;
+		// text-transform: capitalize !important;
+    text-align:justify !important;
+      line-height: 1.8em;
+}
+   .alert-ios .alert-title {
+    margin-top: 8px !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    color: #bc643c !important;
+    
+}
+  .alert-md .alert-title {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    color: #bc643c !important;
+    text-align: center;
+}
+  .alert-md .alert-message {
+    max-height: 400px !important;
+    font-size: 12px !important;
+    font-family: sans-serif !important;
+    // text-transform: capitalize !important;
+    text-align: justify !important;
+    line-height: 1.8em;
+}
+  .alert-ios .alert-message, .alert-ios .alert-input-group {
+    padding: 0 27px 28px;
+    font-size: 13px;
+    text-align: center;
+    color: inherit;
+}
+.alert-md .alert-button {
+    position: relative;
+    overflow: hidden;
+    margin: 0 8px 0 0;
+    padding: 10px;
+    border-radius: 2px;
+    font-weight: 500;
+    text-align: right;
+    text-transform: capitalize;
+    color: #387ef5;
+    background-color: transparent;
+}

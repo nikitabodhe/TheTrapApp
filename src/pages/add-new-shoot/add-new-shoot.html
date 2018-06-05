@@ -1,0 +1,382 @@
+<ion-header class="hidebackIcon">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Add Score</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form #addShootsForm="ngForm" class="form">
+    <div class="shoot_dateNameArea">
+      <ion-grid class="datePicker">
+        <ion-row>
+          <ion-col width-10>
+            <ion-icon class="icon" ios="ios-home" md="md-home"></ion-icon>
+          </ion-col>
+          <ion-col width-90>
+            <ion-input class="shootName" text-left type="text" name="addNewShoot.shoot_name" [(ngModel)]="addNewShoot.shoot_name" placeholder="   Shoot Name"
+              required></ion-input>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      
+      <ion-grid class="datePicker" no-padding>
+        <ion-row>
+          <ion-col width-10>
+            <ion-icon class="icon" ios="ios-calendar" md="md-calendar"></ion-icon>
+          </ion-col>
+          <ion-col width-45>
+            <ion-item>
+              <ion-datetime  time class="start" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" name="addNewShoot.event_start_date" [(ngModel)]="addNewShoot.event_start_date"
+                (ionChange)='setEndDate()' placeholder="Start" required></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col width-45>
+            <ion-item>
+              <ion-datetime displayFormat="MM/DD/YYYY" class="end" [min]="minEndDate" pickerFormat="MM/DD/YYYY" name="addNewShoot.event_end_date"
+                [(ngModel)]="addNewShoot.event_end_date" (ionChange)='setEndEventDate()' placeholder="end" required></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-col width-10>
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="datePicker">
+        <ion-row>
+          <ion-col width-10>
+            <ion-icon class="icon" ios="ios-aperture" md="md-aperture"></ion-icon>
+          </ion-col>
+          <ion-col width-90>
+            <ion-row no-padding class="border">
+              <ion-col width-40>
+                <p class="dateLbl">Level :</p>
+              </ion-col>
+              <ion-col width-60>
+                <ion-item>
+                  <ion-input disabled type="text" name="levels" [(ngModel)]="levels"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <br>
+        <ion-row class="dateLabel">
+          <ion-col width-10>
+          </ion-col>
+          <ion-col width-45 *ngIf="addNewShoot.level_id!='4'">
+            <ion-item>
+              <ion-label>Event #</ion-label>
+              <ion-select name="addNewShoot.event_id" [(ngModel)]="addNewShoot.event_id" required placeholder="Event #">
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+                <ion-option value="6">6</ion-option>
+                <ion-option value="7">7</ion-option>
+                <ion-option value="8">8</ion-option>
+                <ion-option value="9">9</ion-option>
+                <ion-option value="10">10</ion-option>
+                <ion-option value="11">11</ion-option>
+                <ion-option value="12">12</ion-option>
+                <ion-option value="13">13</ion-option>
+                <ion-option value="14">14</ion-option>
+                <ion-option value="15">15</ion-option>
+                <ion-option value="16">16</ion-option>
+                <ion-option value="17">17</ion-option>
+                <ion-option value="18">18</ion-option>
+                <ion-option value="19">19</ion-option>
+                <ion-option value="20">20</ion-option>
+                <ion-option value="21">21</ion-option>
+                <ion-option value="22">22</ion-option>
+                <ion-option value="23">23</ion-option>
+                <ion-option value="24">24</ion-option>
+                <ion-option value="25">25</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col width-45>
+            <ion-item>
+              <ion-label>Type</ion-label>
+              <ion-select name="addNewShoot.type_id" (ionChange)='setMaxTrapNumber()' [(ngModel)]="addNewShoot.type_id" placeholder="Type"
+                required>
+                <ion-option *ngFor="let type of allTypes" value="{{type.type_id}}">{{type.name}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-col width-10>
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+    <ion-grid class="note_bg">
+      <ion-row no-padding>
+
+        <ion-col width-50 no-padding>
+          <p class="shootNameTxtt">
+            <strong> Trap #</strong>
+          </p>
+        </ion-col>
+        <ion-col width-50 no-padding>
+          <p style="font-size: 18px;" color="primary">
+            {{tempTraps}}
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-10>
+          <!-- <p style="font-size: 18px;" color="primary">
+            {{tempTraps}}
+          </p> -->
+        </ion-col>
+
+        <ion-col width-90>
+          <ion-list *ngFor="let tempRange of ranges; let i = index"  no-lines>
+          <ion-item>
+              <h2 item-left>{{i+1}}. {{tempRange.range}}/{{tempRange.roundLength}}</h2>
+              
+              <ion-range name="range{{i+1}}" [(ngModel)]="tempRange.range"  [max]="tempRange.roundLength" (ionChange)='setTrap()' color="primary"
+                pin="false"></ion-range>
+
+              <ion-icon (click)="changeRound(tempRange)"  name="options" item-right></ion-icon>
+           
+                <ion-icon (click)="deleteTraps(tempRange)" name="ios-trash-outline" item-right></ion-icon>
+
+            </ion-item>
+
+            <ion-item *ngIf="tempRange.round">
+              <ion-range name="tempRange.range" [(ngModel)]="tempRange.roundLength" snaps="true" min="0" max="200" step="25" color="primary" (ionChange)='resetTrap(tempRange)'
+                pin="false"></ion-range>
+            </ion-item>
+
+            <!-- <ion-item *ngIf="tempRange.range!=''">
+              <ion-range (ionChange)='resetTrap(tempRange)' max='0' name="range" [(ngModel)]="tempRange.range"   color="primary" pin="false"></ion-range>
+              </ion-item> -->
+          
+          </ion-list>
+        </ion-col> 
+      
+        <!-- <ion-col width-90>
+          <ion-list *ngFor="let tempRange of ranges; let i = index" no-lines>
+            <ion-item>
+              <h2 item-left>{{i+1}}. {{tempRange.range}}/{{tempRange.roundLength}}</h2>
+              <ion-range name="range{{i+1}}" [(ngModel)]="tempRange.range"  max="tempRange.roundLength" (ionChange)='setTrap()' color="primary"
+                pin="false">
+              </ion-range>
+              <ion-icon (click)="changeRound(tempRange)" name="options" item-right></ion-icon>
+              <ion-icon (click)="deleteTraps(tempRange)" name="ios-trash-outline" item-right></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="tempRange.round">
+              <ion-range name="tempRange.range" [(ngModel)]="tempRange.roundLength" [(ngModel)]="tempRange.range"  snaps="true" max="200" step="25" color="primary"
+                pin="false"></ion-range>
+            </ion-item>
+          </ion-list>
+        </ion-col>  -->
+
+
+        <!-- <ion-col width-90>
+          <ion-list *ngFor="let tempRange of ranges; let i = index" no-lines>
+            <ion-item>
+              <h2 item-left>{{i+1}}. {{tempRange.range}}/{{tempRange.roundLength}}</h2>
+              <ion-range *ngIf="tempRange.range==25" name="range{{i+1}}" [(ngModel)]="tempRange.range" (ionChange)='setTrap()' max="25" color="primary"
+                pin="false">
+              </ion-range>
+              <ion-range *ngIf="tempRange.range!=25" name="range{{i+1}}" [(ngModel)]="tempRange.range" (ionChange)='setTrap()'   color="primary" max="200" 
+                pin="false">
+              </ion-range>
+              <ion-icon (click)="changeRound(tempRange)" name="options" item-right></ion-icon>
+              <ion-icon (click)="deleteTraps(tempRange)" name="ios-trash-outline" item-right></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="tempRange.round">
+              <ion-range  id="myrange" name="tempRange.range" max="200" [(ngModel)]="tempRange.roundLength"  [(ngModel)]="tempRange.range"  snaps="true" step="25" color="primary"
+                pin="false"></ion-range>
+            </ion-item>
+          </ion-list>
+        </ion-col> -->
+
+      </ion-row>
+    </ion-grid>
+
+    <div>
+      <ion-grid style="margin-top:10%">
+        <ion-row>
+          <ion-col *ngIf="addNewShoot.type_id == 2" (click)="addDTrap()">
+            <button ion-button color="dark" outline class="edit">+ Add Trap</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngIf="addNewShoot.type_id != 2" (click)="addTraps()">
+            <button ion-button color="dark" outline class="edit">+ Add Trap</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+
+
+    <ion-grid *ngIf="addNewShoot.level_id == 1 || addNewShoot.level_id == 2 " class="note_grid" no-padding>
+      <ion-row>
+        <ion-col width-10>
+        </ion-col>
+        <ion-col width-80>
+          <ion-item *ngIf="addNewShoot.type_id != 3">
+            <ion-label> Class/Category</ion-label>
+            <ion-toggle name="addNewShoot.show" [(ngModel)]="addNewShoot.show" (ionChange)='changeClass()' [checked]="addNewShoot.show"></ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="addNewShoot.type_id == 3">
+            <ion-label> Category/Yardage</ion-label>
+            <ion-toggle name="addNewShoot.show" [(ngModel)]="addNewShoot.show" (ionChange)='changeCategory()' [checked]="addNewShoot.show"></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col width-10>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-20 style="padding-top:0px;" *ngIf="addNewShoot.type_id != 3">
+          <div *ngIf="addNewShoot.show">
+            <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="addNewShoot.class_id==0|| addNewShoot.place_id==0">
+            <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.class_id!=0  && addNewShoot.place_id!=0">
+          </div>
+          <div *ngIf="!addNewShoot.show">
+            <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="addNewShoot.category_id==0 || addNewShoot.place_id==0">
+            <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.category_id!=0 && addNewShoot.place_id!=0">
+          </div>
+        </ion-col>
+        <ion-col width-20 style="padding-top:0px;" *ngIf="addNewShoot.type_id == 3 ">
+          <div *ngIf="addNewShoot.show">
+            <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="addNewShoot.category_id==0 || addNewShoot.place_id==0">
+            <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.category_id!=0  && addNewShoot.place_id!=0">
+          </div>
+          <div *ngIf="!addNewShoot.show">
+            <img src="images/trophy.png" alt="" style="max-width:80%;opacity: 0.5;" *ngIf="addNewShoot.earned_yardage==0 || addNewShoot.place_id==0">
+            <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.earned_yardage!=0 && addNewShoot.place_id!=0">
+          </div>
+        </ion-col>
+        <!-- <ion-col width-20 style="padding-top:0px;" *ngIf="addNewShoot.show">
+          <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.class_id!=0 && addNewShoot.place_id!=0">
+        </ion-col>
+        <ion-col width-20 style="padding-top:0px;" *ngIf="!addNewShoot.show && addNewShoot.type_id!= 3">
+          <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.category_id!=0 && addNewShoot.place_id!=0">
+        </ion-col>
+        <ion-col width-20 style="padding-top:0px;" *ngIf="!addNewShoot.show && addNewShoot.type_id == 3">
+          <img src="images/trophy.png" alt="" style="max-width:80%;" *ngIf="addNewShoot.category_id!=0 && addNewShoot.place_id!=0&&addNewShoot.earned_yardage!=0">
+        </ion-col> -->
+        <ion-col width-40 style="padding-top:0px;">
+          <div *ngIf="addNewShoot.type_id != 3">
+            <div *ngIf="addNewShoot.show" class="shots_filterArea">
+              <ion-item>
+                <ion-label>Class</ion-label>
+                <ion-select name="addNewShoot.class_id" [(ngModel)]="addNewShoot.class_id" placeholder="Class">
+                  <ion-option value="0" class="start">None</ion-option>
+                  <ion-option *ngFor="let class of allClass" value="{{class.class_id}}">{{class.class_name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+            <div *ngIf="!addNewShoot.show " class="shots_filterArea">
+              <ion-item>
+                <ion-label>Category</ion-label>
+                <ion-select name="addNewShoot.category_id" [(ngModel)]="addNewShoot.category_id" placeholder="Category">
+                  <ion-option value="0">None</ion-option>
+                  <ion-option *ngFor="let category of allCategory" value="{{category.category_id}}">{{category.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </div>
+          <div *ngIf="addNewShoot.type_id == 3">
+            <div *ngIf="addNewShoot.show " class="shots_filterArea">
+              <ion-item>
+                <ion-label>Category</ion-label>
+                <ion-select name="addNewShoot.category_id" [(ngModel)]="addNewShoot.category_id" placeholder="Category">
+                  <ion-option value="0">None</ion-option>
+                  <ion-option *ngFor="let category of allCategory" value="{{category.category_id}}">{{category.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+            <div *ngIf="!addNewShoot.show" class="shots_filterArea">
+              <ion-item>
+                <ion-label>Yardage</ion-label>
+                <ion-select name="addNewShoot.yardage_id" [(ngModel)]="addNewShoot.yardage_id" placeholder="Yardage">
+                  <ion-option value="0">None</ion-option>
+                  <ion-option *ngFor="let earned of allEarnedYardage" value="{{earned.yardage_id}}">{{earned.yardage_value}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col width-40 style="padding-top:0px;">
+          <div class="shots_filterArea">
+            <ion-item>
+              <ion-label>Place</ion-label>
+              <ion-select name="addNewShoot.place_id" [(ngModel)]="addNewShoot.place_id" placeholder="Place">
+                <ion-option value="0">None</ion-option>
+                <ion-option *ngFor="let place of allPlaces" value="{{place.place_id}}">{{place.place_name}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col width-10>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-20>
+        </ion-col>
+        <ion-col width-40 style="padding-top:0px;">
+          <div class="shots_filterArea" *ngIf="addNewShoot.type_id == 3">
+            <ion-item>
+              <ion-label>Earned Yardage</ion-label>
+              <ion-select name="addNewShoot.earned_yardage_id" (ionChange)='AddEarnedYardage(EarnedYardage)' [(ngModel)]="addNewShoot.earned_yardage_id"
+                placeholder="Earned Yardage">
+                <ion-option value="0">None</ion-option>
+                <ion-option *ngFor="let earned of EarnedYardage" value="{{earned.earned_yardage_id}}">{{earned.earned_yardage_value}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col width-40>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid style="margin-top:0%;">
+      <ion-row no-padding>
+        <ion-col width-3>
+        </ion-col>
+        <ion-col width-94>
+          <ion-item>
+            <textarea placeholder="Enter your Note here... " [(ngModel)]="addNewShoot.note" rows="4" name="comment[text]" id="comment_text"
+              cols="100" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col width-3>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div padding style="margin-top:-10%;">
+      <button [disabled]="!addShootsForm.form.valid" (click)="confirmShoots()" type="Submit" ion-button block>Submit</button>
+    </div>
+  </form>
+
+</ion-content>
+
+<!-- // addTraps() {
+  //   debugger;
+  //   // this.tempRange=this.ranges;
+  //   // console.log(this.tempRange);
+    
+  //   let last_element = this.ranges[this.ranges.length-1];
+  //   console.log("last_element: ",last_element);
+  //   this.ranges.splice(this.ranges.indexOf(this.ranges.length-1), 1);
+  //   console.log("splice range: ",this.ranges);
+  //  // this.ranges.length = 0;
+  //   this.ranges.push({ range:last_element.range,roundLength:last_element.roundLength},
+  //     { range: 25, roundLength: 25 });
+  //     console.log("last element: ",this.ranges);
+  //     //this.ranges.length = 0;  
+  //   this.setTrap();
+  // } -->

@@ -1,0 +1,45 @@
+page-add-shoot-score {
+	.hidebackIcon .back-button-icon{ display:none;}
+	.hidebackIcon .title.title-md{ width:80%;}
+	.bar-button-md{text-transform: capitalize;}
+    p.titles{font-family: 'Lato', sans-serif;font-weight:600;font-size: 14px; color:#333; margin:0px;text-decoration: underline}
+	p.title{font-family: 'Lato', sans-serif;font-weight:300;font-size: 13px; color:#333; margin:0px;}
+	p.shootName{font-family: 'Lato', sans-serif;font-weight:600;line-height: 1.2em;
+    font-size: 14px; color:#333; margin:0px;}
+    .icon{ width: 10%; float:left; min-width:10%; min-height:1px; cursor:pointer;}
+    .titleCol{ width: 40%; float:left; padding:7px 5px 5px 5px !important;}
+    .lavelCol{ width: 30%; float:left;}
+    .dateCol{ width: 20%; float:left;}
+    .row{ clear:both; overflow:hidden; padding: 5px 0 3px 3px; }  
+    .row1{border-bottom: 1px solid #dbdde0;clear:both; overflow:hidden; padding: 5px 0 3px 3px; }  
+     .row2{border-bottom: 1px solid gray;clear:both; overflow:hidden; padding: 5px 0 3px 3px; }  
+    .row div{padding:5px;}
+    .line{ border-bottom:1px solid #ccc; height:1px;} 
+    textarea {
+   resize: both;
+}
+    .linee{ border-bottom:1px solid #ccc; } 
+    .shootname{text-align: center;font-family: 'Lato', sans-serif;font-weight:600;font-size: 16px;text-transform: capitalize}
+   
+}
+
+.toolbar-ios{
+    padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+    padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+    padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+    min-height: 35px !important;
+    height:auto !important;
+    padding-top: 7px !important;
+}
+.toolbar-ios
+{
+    padding-right: 10px !important;
+}

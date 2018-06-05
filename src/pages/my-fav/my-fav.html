@@ -1,0 +1,107 @@
+<!--
+  Generated template for the MyFav page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button menuToggle *ngIf="!selectedItem">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>My Favorites</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon class="displayN" name="ios-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)" class="sticky"></ion-searchbar>
+  <p *ngIf="myFav.club == '' && myFav.shoot == ''  && myFav.note =='' || myFav=='' "  text-center> No result found</p>
+  <div *ngIf="searching" text-center class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" >
+     <div class="bg">
+    <h3 *ngIf="myFav.club != '' && !noMyAvgScores">Clubs</h3>
+    <div class="upcomming_event">
+      <ion-list  *ngFor="let club of myFav.club">
+        <ion-item-sliding #slidingItem>
+          <ion-item (click)="clubDetails(event,club)">
+            <ion-avatar item-left text-center>
+              <img src="images/house.png">
+            </ion-avatar>
+            <h2 text-capitalize>{{club.club_name}}
+              <!-- <span style="float:right;">200 miles</span --></h2>
+            <!-- <p>{{club.city}} ,{{club.state}}</p> -->
+            <p class="address">{{club.address}}</p>
+            <h6 item-right class="More"> More &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6>
+            <ion-icon class="customIcon" name="ios-arrow-forward"></ion-icon>
+          </ion-item>
+          <ion-item-options>
+            <button ion-button color="danger" (click)="confirm(club,slidingItem)"><ion-icon name="ios-trash-outline"></ion-icon></button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+    </div>
+     </div>
+    <div class="bg">
+      <h3 *ngIf="myFav.shoot != '' && !noMyAvgScores">Shoots</h3>
+      <div class="upcomming_event">
+        <ion-list *ngFor="let shoot of myFav.shoot" >
+          <ion-item-sliding #slidingItem>
+          <ion-item  (click)="shootDetails(event,shoot)">
+            <ion-avatar item-left text-center>
+              <img *ngIf="shoot.levelname == 'ATA'" src="images/ata.png">
+              <img *ngIf="shoot.levelname == 'LEAGUE'" src="images/lgue.png">
+              <img *ngIf="shoot.levelname == 'PITA'" src="images/pita.png">
+              <img *ngIf="shoot.levelname == 'PRACTICE'" src="images/Pract2.png">
+              <p *ngIf="shoot.levelname != 'LEAGUE'" [ngClass]="{yellow: shoot.levelname == 'ATA', blue: shoot.levelname == 'PITA', prtc : shoot.levelname == 'PRTC'}"
+                text-center text-capitalize>{{(shoot.levelname=='PRACTICE')?'PRTC':shoot.levelname}}</p>
+              <p *ngIf="shoot.levelname == 'LEAGUE'" class="green">LGUE</p>
+            </ion-avatar>
+            <h2 text-capitalize>{{shoot.shoot_name}}
+              <!-- <span style="float:right;">200 miles</span --></h2>
+            <p text-wrap class="address">{{shoot.shoot_address}}</p>
+            <h6 item-right class="More"> More &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6>
+            <ion-icon class="customIcon" name="ios-arrow-forward"></ion-icon>
+          </ion-item>
+          <ion-item-options>
+            <button ion-button color="danger" (click)="confirm(shoot,slidingItem)"><ion-icon name="ios-trash-outline"></ion-icon></button>
+          </ion-item-options>
+        </ion-item-sliding>
+        </ion-list>
+      </div>
+    </div>
+     <div class="bg">
+    <h3 *ngIf="myFav.note != '' && !noMyAvgScores">Notes</h3>
+    <div class="upcomming_event">
+      <ion-list *ngFor="let note of myFav.note">
+         <ion-item-sliding #slidingItem>
+        <ion-item ion-item  (click)="noteDetails($event, note)">
+          <ion-avatar item-left text-center>
+            <img src="images/star_colored@3x.png">
+            <!-- <p text-center text-capitalize>16 yards</p> -->
+          </ion-avatar>
+          <h2>{{note.shootname}}</h2>
+          <p class="black">{{note.shoot_date | date}}</p>
+          <p>{{note.note}}</p>
+          <h6 item-right class="More"> More &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6>
+          <ion-icon class="customIcon" name="ios-arrow-forward"></ion-icon>
+        </ion-item>
+              <ion-item-options>
+            <button ion-button color="danger" (click)="confirm(note,slidingItem)"><ion-icon name="ios-trash-outline"></ion-icon></button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+     </div>
+  </div>
+</ion-content>

@@ -1,0 +1,57 @@
+page-new-login {
+	h3.title-head{
+		font-family: 'Montserrat', sans-serif;
+		
+		font-weight:600;
+		font-size:32px;
+		text-align:center;
+		color: #ffffff;
+		padding-top: 60px;
+		margin-bottom: 25px;
+
+	}
+	ion-content{ 
+		 background: url('../images/login_bg.png') no-repeat center center fixed; 
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover; 
+	}
+	.grid p{
+		color:#fff;
+		font-family: 'Montserrat', sans-serif;
+		font-size:18px;
+		margin:20px 0 45px 0;
+	}
+	.button_area{ padding:20px 40px;}
+	.fblogin_button{ color:#fff; border-radius:0px;-moz-border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;
+	font-family: 'Lato', sans-serif; font-size:15px; font-weight:400; height:45px; text-transform: none; background:#4b69b3;}
+	.signup_button{  color:#fff; border-radius:0px;-moz-border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;
+	font-family: 'Lato', sans-serif; font-size:15px; font-weight:400; height:45px; margin-top:20px;text-transform: none;background:#ee251d;}
+	p{
+		color:#fff;
+		font-family: 'Montserrat', sans-serif;
+		font-size:18px; text-align:center; margin-top:25px;
+	}
+	 .logo{width: 80%;}
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}

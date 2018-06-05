@@ -1,0 +1,329 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button menuToggle *ngIf="!selectedItem">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>Dashboard</ion-title>
+    <ion-buttons class="royal" end>
+      <button ion-button icon-only color="royal" (click)="addShoots($event)">
+        <ion-icon name="ios-add" ></ion-icon>
+        <!-- <span class="menuSubTitle"><br>Score</span> -->
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="home">
+
+<ion-grid no-padding>
+  <ion-row class="scrolll" no-padding>
+    <ion-col>
+      <ion-slides pager effect="flip">
+        <ion-slide>
+          <p class="heading">My Power Score </p>
+          <ion-grid>
+            <ion-row>
+              <ion-col width-50>
+                <h2 class="leftText" *ngIf="noPowerScores">{{myPowerScores.total}}</h2>
+                <h2 class="leftText" *ngIf="!noPowerScores">0</h2>
+              </ion-col>
+              <ion-col width-50 class="right_area">
+                <p *ngIf="noPowerScores"><span class="font">Effort</span><span>{{myPowerScores.efforts}}</span></p>
+                <p *ngIf="!noPowerScores"><span class="font">Effort</span><span>0</span></p>
+                <p *ngIf="noPowerScores"><span class="font">Avg</span><span>{{myPowerScores.avg}}</span></p>
+                <p *ngIf="!noPowerScores"><span class="font">Avg</span><span>0</span></p>
+                <p *ngIf="noPowerScores"><span class="font">Wins</span><span>{{myPowerScores.wins}}</span></p>
+                <p *ngIf="!noPowerScores"><span class="font">Wins</span><span>0</span></p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+        <ion-slide>
+          <p class="heading">Category Rankings</p>
+          <ion-grid>
+            <ion-row>
+              <ion-col width-50 class="category">
+                <ion-row>
+                  <ion-col class="font">
+                    Best
+                  </ion-col>
+                  <ion-col>
+                    {{myCategoryRanking.best_total}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">
+                    Me
+                  </ion-col>
+                  <ion-col>
+                    {{myCategoryRanking.me_total}}
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col width-50 class="right_area">
+                <ion-row no-padding>
+                  <ion-col class="categoryBest"></ion-col>
+                  <ion-col class="categoryBest">
+                    <u>Best</u>
+                  </ion-col>
+                  <ion-col class="categoryBest">
+                    <u>Me</u>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">Effort</ion-col>
+                  <ion-col class="val">{{myCategoryRanking.best_efforts}}</ion-col>
+                  <ion-col class="val">{{myCategoryRanking.me_efforts}}</ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">Avg</ion-col>
+                  <ion-col class="val">{{myCategoryRanking.best_avg}}</ion-col>
+                  <ion-col class="val">{{myCategoryRanking.me_avg}}</ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">Wins</ion-col>
+                  <ion-col class="val">{{myCategoryRanking.best_wins}}</ion-col>
+                  <ion-col class="val">{{myCategoryRanking.me_wins}}</ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+        <ion-slide>
+          <p class="heading">Overall Rankings</p>
+          <ion-grid>
+            <ion-row>
+              <ion-col width-50 class="category">
+                <ion-row>
+                  <ion-col class="font">
+                    Best
+                  </ion-col>
+                  <ion-col>
+                    {{overallRanking.best_total}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">
+                    Me
+                  </ion-col>
+                  <ion-col>
+                    {{overallRanking.me_total}}
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col width-50 class="right_area">
+                <ion-row>
+                  <ion-col class="categoryBest"></ion-col>
+                  <ion-col class="categoryBest">
+                    <u>Best</u>
+                  </ion-col>
+                  <ion-col class="categoryBest">
+                    <u>Me</u>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">Effort</ion-col>
+                  <ion-col class="val">{{overallRanking.best_efforts}}</ion-col>
+                  <ion-col class="val">{{overallRanking.me_efforts}}</ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">Avg</ion-col>
+                  <ion-col class="val">{{overallRanking.best_avg}}</ion-col>
+                  <ion-col class="val">{{overallRanking.me_avg}}</ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="font">Wins</ion-col>
+                  <ion-col class="val">{{overallRanking.best_wins}}</ion-col>
+                  <ion-col class="val">{{overallRanking.me_wins}}</ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+        <!-- <ion-slide no-padding>
+          <p class="headings">Power Score Trends</p>
+          <ion-grid no-padding class="div_for_power_score">
+            <ion-row>
+              <ion-col width-10>
+
+              </ion-col>
+              <ion-col class="left_area">
+                <ion-row no-padding>
+                  <ion-col width-20></ion-col>
+                  <ion-col width-20 class="val">
+                    <u>2w</u>
+                  </ion-col>
+                  <ion-col width-20 class="val">
+                    <u>1m</u>
+                  </ion-col>
+                  <ion-col width-20 class="val">
+                    <u>3m</u>
+                  </ion-col>
+                  <ion-col width-20 class="val">
+                    <u>LY</u>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="overflow: initial;white-space: initial;">
+                  <ion-col width-20 class="font">Avg</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday.avg}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_1month.avg}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_3month.avg}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_lastyear.avg}}</ion-col>
+                </ion-row>
+                <ion-row style="overflow: initial;white-space: initial;">
+                  <ion-col width-20 class="font">Efforts</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday.effort}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_1month.effort}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_3month.effort}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_lastyear.effort}}</ion-col>
+                </ion-row>
+                <ion-row style="overflow: initial;white-space: initial;">
+                  <ion-col width-20 class="font">Wins</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday.wins}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_1month.wins}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_3month.wins}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_lastyear.wins}}</ion-col>
+                </ion-row>
+                <ion-row style="overflow: initial;white-space: initial;">
+                  <ion-col width-20 class="font">Overall</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday.overall}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_1month.overall}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_3month.overall}}</ion-col>
+                  <ion-col width-20 class="val">{{overallRankingday_lastyear.overall}}</ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide> -->
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-row no-padding>
+    <ion-col>
+      <div class="upcomming_event" no-padding>
+        <p class="title" text-center>
+          <u>Current &amp; Upcoming Shoots</u>
+        </p>
+        <div class="line_div"></div>
+        <p *ngIf="noUpcomingEvents" style="text-align: center;padding: 10px 0;">No upcoming Events</p>
+        <ion-scroll *ngIf="!noUpcomingEvents" scrollY="true">
+          <ion-list>
+            <ion-item *ngFor="let event of upcomingEvents" (click)="shootDetails($event,event)">
+              <ion-avatar item-left text-center>
+                <img *ngIf="event.levelname == 'ATA'" src="images/ata.png">
+                <img *ngIf="event.levelname == 'LEAGUE'" src="images/lgue.png">
+                <img *ngIf="event.levelname == 'PITA'" src="images/pita.png">
+                <img *ngIf="event.levelname == 'PRACTICE'" src="images/Pract2.png">
+                <p *ngIf=" event.levelname != 'LEAGUE' && event.levelname != 'PRACTICE'" [ngClass]="{yellow: event.levelname == 'ATA', blue: event.levelname == 'PITA'  }"
+                  text-center text-capitalize>{{event.levelname}}</p>
+                <p *ngIf="event.levelname == 'LEAGUE'" class="green">LGUE</p>
+                <p *ngIf="event.levelname == 'PRACTICE'" class="prtc">PRTC</p>
+              </ion-avatar>
+              <h2 class="shoot_name">{{event.shoot_name}}</h2>
+              <p>{{event.shoot_date | date}}</p>
+              <p item-right class="More"> More &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+              <ion-icon class="customIcon" name="ios-arrow-forward"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="segmentArea" no-padding>
+        <p class="myProgress">My Progress</p>
+        <ion-segment [(ngModel)]="segment">
+          <ion-segment-button value="sgl" (click)="onSegmentClick()">
+            SGL
+          </ion-segment-button>
+          <ion-segment-button value="hdcp" (click)="onSegmentClick()">
+            HDCP
+          </ion-segment-button>
+          <ion-segment-button value="dbl" (click)="onSegmentClick()">
+            DBL
+          </ion-segment-button>
+        </ion-segment>
+
+
+        <ion-slides #Slides pager (ionSlideDidChange)="onSlideDidChange($event)">
+             <ion-slide>
+            <div>
+              
+              <canvas #lineCanvas></canvas>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div>
+              <canvas #lineCanvas1></canvas>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div>
+              <canvas #lineCanvas2></canvas>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div>
+              <canvas #lineCanvas3></canvas>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div>
+              <canvas #lineCanvas4></canvas>
+            </div>
+          </ion-slide>
+        </ion-slides>
+
+
+        <ion-segment [(ngModel)]="segments">
+          <ion-segment-button value="onemonth" (click)="onSegmentClick()">
+            1 Mo
+          </ion-segment-button>
+          <ion-segment-button value="threemonth" (click)="onSegmentClick()">
+            3 Mo
+          </ion-segment-button>
+          <ion-segment-button value="CTY" (click)="onSegmentClick()">
+            CTY
+          </ion-segment-button>
+          <ion-segment-button value="LTY" (click)="onSegmentClick()">
+            LTY
+          </ion-segment-button>
+          <ion-segment-button value="LIFE" (click)="onSegmentClick()">
+            LIFE
+          </ion-segment-button>
+        </ion-segment>
+
+      </div>
+    </ion-col>
+  </ion-row>
+   <!-- <ion-row no-padding>
+    <ion-col>
+      <div class="upcomming_event" no-padding>
+        <ion-scroll  scrollY="true">
+          <ion-list>
+           
+            <ion-item *ngFor="let event of my_progresss">
+              <ion-avatar item-left text-center>
+                <img *ngIf="level_id == '1'" src="images/ata.png">
+                <img *ngIf="level_id == '3'" src="images/lgue.png">
+                <img *ngIf="level_id == '2'" src="images/pita.png">
+                <img *ngIf="level_id == '4'" src="images/Pract2.png">
+                <p *ngIf=" level_id != '3' && level_id != '4'" [ngClass]="{yellow: level_id == '1', blue:level_id == '2'  }"
+                  text-center text-capitalize>{{event.shoot_name}}</p>
+                <p *ngIf="level_id== '3'" class="green">LGUE</p>
+                <p *ngIf="level_id== '4'" class="prtc">PRTC</p>
+              </ion-avatar>
+              <h2 class="shoot_name">{{event.shoot_name}}</h2>
+              <p>{{event.date | date}}</p>
+              <p item-right class="More"> More &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+              <ion-icon class="customIcon" name="ios-arrow-forward"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </div>
+    </ion-col>
+  </ion-row> -->
+</ion-grid>
+</ion-content>

@@ -1,0 +1,810 @@
+<!--
+  Generated template for the MyAverage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button menuToggle *ngIf="!selectedItem">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>My Averages</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon class="displayN" name="ios-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="segmentArea">
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="all" (click)="slideChanged('all')">
+        ALL
+      </ion-segment-button>
+      <ion-segment-button value="ata" (click)="slideChanged('ata')">
+        ATA
+      </ion-segment-button>
+      <ion-segment-button value="pita" (click)="slideChanged('pita')">
+        PITA
+      </ion-segment-button>
+      <ion-segment-button value="lge" (click)="slideChanged('lge')">
+        LGE
+      </ion-segment-button>
+      <ion-segment-button value="pract" (click)="slideChanged('pract')">
+        PRACT
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <!-- <ion-item text-center style="border-bottom:1px solid #dedede;">
+    <ion-datetime text-center displayFormat="YYYY" pickerFormat="YYYY" (ngModelChange)="onChange($event)" [(ngModel)]="targetYear"></ion-datetime>
+  </ion-item> -->
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col class="shots_filterArea"></ion-col>
+      <ion-col text-center>
+        <div class="shots_filterArea">
+          <ion-list>
+            <ion-item>
+              <ion-label>Target Year</ion-label>
+              <ion-select (ngModelChange)="filterByTargetYear($event)" [(ngModel)]="targetYears" cancelText="Cancel" okText="Confirm" placeholder="Target Year"
+                class="select_for_target">
+                <ion-option value="0">All</ion-option>
+                <ion-option *ngFor="let years of targetYear" value="{{years.year}}">{{years.year}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+      <ion-col class="shots_filterArea"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="line"></div>
+  <p *ngIf="myAvgScores == '' " text-center> No Score Founds</p>
+  <div [ngSwitch]="segment">
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+      <ion-slide>
+        <ion-grid class="firstTable" *ngSwitchCase="'all'">
+          <ion-row class="noPadding" style="padding-left: 4px;">
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <u>
+                    <strong>Avg</strong>
+                  </u>
+                </ion-col>
+                <ion-col width-33 text-center class="bold">
+                  <u>
+                    <strong>Total</strong>
+                  </u>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+
+                <ion-col width-15>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.alllevel.singleavg=='0')?'0.00':myAvgScores.alllevel.singleavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.alllevel.singletotal=='0')?'0.00':myAvgScores.alllevel.singletotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.alllevel.handicapavg=='0')?'0.00':myAvgScores.alllevel.handicapavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.alllevel.handicaptotal=='0')?'0.00':myAvgScores.alllevel.handicaptotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.alllevel.doubleavg=='0')?'0.00':myAvgScores.alllevel.doubleavg}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{(myAvgScores.alllevel.doubletotal=='0')?'0.00':myAvgScores.alllevel.doubletotal}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col width-50 class="borderLeft">
+              <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <u>
+                    <strong>Last 500</strong>
+                  </u>
+                </ion-col>
+                <ion-col width-40 text-center class="bold">
+                  <u>
+                    <strong>Last Year</strong>
+                  </u>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.alllevel.singlefivehundred=='0')?'0.00':myAvgScores.alllevel.singlefivehundred }}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.alllevel.singlelastyear=='0')?'0.00':myAvgScores.alllevel.singlelastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.alllevel.handicapfivehundred=='0')?'0.00':myAvgScores.alllevel.handicapfivehundred }}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.alllevel.handicaplastyear=='0')?'0.00':myAvgScores.alllevel.handicaplastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.alllevel.doublesfivehundred=='0')?'0.00':myAvgScores.alllevel.doublesfivehundred}}
+                </ion-col>
+                <ion-col width-40 text-center>
+                  {{(myAvgScores.alllevel.doubleslastyear=='0')?'0.00':myAvgScores.alllevel.doubleslastyear}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg1 </ion-col>
+                <ion-col width-50 text-center> {{allavg | number : '1.2-2'}}</ion-col>
+
+                <ion-col width-33 text-center>{{allTotal=='0'?'0.00':allTotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg2</ion-col>
+                <ion-col width-50 text-center>
+                  {{ (myAvgScores.alllevel.average21=='0')?'0.00':myAvgScores.alllevel.average21}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{ (myAvgScores.alllevel.average22=='0')?'0.00':myAvgScores.alllevel.average22}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="background">
+          <ion-row>
+            <ion-col>
+              <ion-row class="header_for_all">
+                <ion-col width-25 class="date_col">
+                  <b>
+                    <u> Date</u>
+                  </b>
+                </ion-col>
+                <ion-col width-35>
+                  <b>
+                    <u>Sh Name</u>
+                  </b>
+                </ion-col>
+                <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                <ion-col width-15>
+                  <b>
+                    <u>Type</u>
+                  </b>
+                </ion-col>
+                <ion-col width-15>
+                  <b>
+                    <u>Score</u>
+                  </b>
+                </ion-col>
+              </ion-row>
+              <ion-scroll *ngIf="myAvgScores != ''" class="scrollSecond" scrollY="true" scrollX="true">
+                <!-- <div *ngFor="let event of myAvgScores.eventlist "> -->
+                    <!-- *ngFor="let task of tasks.slice().reverse()" -->
+                    <div *ngFor="let event of myAvgScores.eventlist.slice().reverse()">
+                    <!-- #user of users.slice().reverse() -->
+                  <ion-row *ngIf="event.typename != null" class="content_for_all">
+                    <ion-col width-25 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy'}}</p>
+                    </ion-col>
+                    <ion-col width-35 text-capitalize class="text-wrap" style="padding-left:0px">{{event.shoot_name}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event!='' && event.event_no!='0'">{{event.event_no}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event==''||event.event_no=='0'">-</ion-col>
+                    <ion-col width-15>{{event.typename}}</ion-col>
+                    <ion-col width-15>{{event.score}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-scroll>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <!-- <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row>
+                  <ion-col width-30 fixed class="bold">Date</ion-col>
+                  <ion-col width-30 fixed class="bold">Sh Name</ion-col>
+                  <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                  <ion-col width-20 fixed class="bold">Type</ion-col>
+                  <ion-col width-10 fixed class="bold">Score</ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.typename != null">
+                    <ion-col width-30 fixed>
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy'}}</p>
+                    </ion-col>
+                    <ion-col width-30 fixed class="text-wrap">{{event.shoot_name}}</ion-col>
+                    <ion-col width-10 fixed>{{event.event_no}}</ion-col>
+                      <ion-col width-10 fixed *ngIf="event.event==''||event.event=='0'">-</ion-col>
+                    <ion-col width-20 fixed>{{event.typename}}</ion-col>
+                    <ion-col width-10 fixed>{{event.score}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid> -->
+
+      </ion-slide>
+
+      <ion-slide>
+        <ion-grid class="firstTable" *ngSwitchCase="'ata'">
+          <ion-row class="noPadding" style="padding-left: 4px;">
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <u>
+                    <strong>Avg</strong>
+                  </u>
+                </ion-col>
+                <ion-col width-33 text-center class="bold">
+                  <u>
+                    <strong>Total</strong>
+                  </u>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.ATA.singleavg=='0')?'0.00':myAvgScores.ATA.singleavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.ATA.singletotal=='0')?'0.00':myAvgScores.ATA.singletotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.ATA.handicapavg=='0')?'0.00':myAvgScores.ATA.handicapavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.ATA.handicaptotal=='0')?'0.00':myAvgScores.ATA.handicaptotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.ATA.doubleavg=='0')?'0.00':myAvgScores.ATA.doubleavg}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{(myAvgScores.ATA.doubletotal=='0')?'0.00':myAvgScores.ATA.doubletotal}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col width-50 class="borderLeft">
+              <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <u>
+                    <strong>Last 500</strong>
+                  </u>
+                </ion-col>
+                <ion-col width-40 text-center class="bold">
+                  <u>
+                    <strong>Last Year</strong>
+                  </u>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.ATA.singlefivehundred=='0')?'0.00':myAvgScores.ATA.singlefivehundred }}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.ATA.singlelastyear=='0')?'0.00':myAvgScores.ATA.singlelastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.ATA.handicapfivehundred=='0')?'0.00':myAvgScores.ATA.handicapfivehundred}}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.ATA.handicaplastyear=='0')?'0.00':myAvgScores.ATA.handicaplastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.ATA.doublesfivehundred=='0')?'0.00':myAvgScores.ATA.doublesfivehundred}}
+                </ion-col>
+                <ion-col width-40 text-center>
+                  {{(myAvgScores.ATA.doubleslastyear=='0')?'0.00':myAvgScores.ATA.doubleslastyear}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg1</ion-col>
+
+                <ion-col width-50 text-center> {{ATAavg | number : '1.2-2'}}</ion-col>
+
+                <ion-col width-33 text-center>{{ATATotal=='0'?'0.00':ATATotal}}</ion-col>
+                <!-- <ion-col width-50 text-center> {{((myAvgScores.ATA.singleavg + myAvgScores.ATA.handicapavg + myAvgScores.ATA.doubleavg)/3=='0')?'0.00':(myAvgScores.ATA.singleavg
+                  + myAvgScores.ATA.handicapavg + myAvgScores.ATA.doubleavg)/3 | number : '1.2-2' }}
+                </ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.ATA.singletotal + myAvgScores.ATA.handicaptotal + myAvgScores.ATA.doubletotal=='0')?'0.00':myAvgScores.ATA.singletotal
+                  + myAvgScores.ATA.handicaptotal + myAvgScores.ATA.doubletotal}}</ion-col> -->
+              </ion-row>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg2</ion-col>
+                <ion-col width-50 text-center>
+                  {{( myAvgScores.ATA.average21=='0')?'0.00': myAvgScores.ATA.average21}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{ (myAvgScores.ATA.average22=='0')?'0.00':myAvgScores.ATA.average22}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-scroll *ngIf="myAvgScores != ''" class="scrollSecond" scrollY="true" scrollX="true">
+          <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row class="header_for_all">
+                  <ion-col width-25 class="date_col">
+                    <b>
+                      <u> Date</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-35>
+                    <b>
+                      <u>Sh Name</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                  <ion-col width-15>
+                    <b>
+                      <u>Type</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-15>
+                    <b>
+                      <u>Score</u>
+                    </b>
+                  </ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.levelname ==='ATA'" class="content_for_all">
+                    <ion-col width-25 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy'}}</p>
+                    </ion-col>
+                    <ion-col width-35 text-capitalize class="text-wrap" style="padding-left:0px">{{event.shoot_name}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event!='' && event.event_no!='0'">{{event.event_no}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event==''||event.event_no=='0'">-</ion-col>
+                    <ion-col width-15>{{event.typename}}</ion-col>
+                    <ion-col width-15>{{event.score}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row>
+                  <ion-col width-30 fixed class="bold">Date</ion-col>
+                  <ion-col width-30 fixed class="bold">Sh Name</ion-col>
+                  <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                  <ion-col width-20 fixed class="bold">Type</ion-col>
+                  <ion-col width-10 fixed class="bold">Score</ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.levelname ==='ATA'">
+                    <ion-col width-30 fixed>
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy/yy'}}</p>
+                    </ion-col>
+                    <ion-col width-30 fixed class="text-wrap">{{event.shoot_name}}</ion-col>
+                    <ion-col width-10 fixed>{{event.event_no}}</ion-col>
+                      <ion-col width-10 fixed *ngIf="event.event==''||event.event=='0'">-</ion-col>
+                    <ion-col width-20 fixed>{{event.typename}}</ion-col>
+                    <ion-col width-10 fixed>{{event.score}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid> -->
+        </ion-scroll>
+      </ion-slide>
+      <ion-slide>
+        <ion-grid class="firstTable" *ngSwitchCase="'pita'">
+          <ion-row class="noPadding" style="padding-left: 4px;">
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <u>
+                    <strong>Avg</strong>
+                  </u>
+                </ion-col>
+                <ion-col width-33 text-center class="bold">
+                  <u>
+                    <strong>Total</strong>
+                  </u>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PITA.singleavg=='0')?'0.00':myAvgScores.PITA.singleavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.PITA.singletotal=='0')?'0.00':myAvgScores.PITA.singletotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PITA.handicapavg=='0')?'0.00':myAvgScores.PITA.handicapavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.PITA.handicaptotal=='0')?'0.00':myAvgScores.PITA.handicaptotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.PITA.doubleavg=='0')?'0.00':myAvgScores.PITA.doubleavg}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{(myAvgScores.PITA.doubletotal=='0')?'0.00':myAvgScores.PITA.doubletotal}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col width-50 class="borderLeft">
+              <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <strong>Last 500</strong>
+                </ion-col>
+                <ion-col width-40 text-center class="bold">
+                  <strong>Last Year</strong>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PITA.singlefivehundred=='0')?'0.00':myAvgScores.PITA.singlefivehundred }}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.PITA.singlelastyear=='0')?'0.00':myAvgScores.PITA.singlelastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PITA.handicapfivehundred=='0')?'0.00':myAvgScores.PITA.handicapfivehundred}}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.PITA.handicaplastyear=='0')?'0.00':myAvgScores.PITA.handicaplastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.PITA.doublesfivehundred=='0')?'0.00':myAvgScores.PITA.doublesfivehundred}}
+                </ion-col>
+                <ion-col width-40 text-center>
+                  {{(myAvgScores.PITA.doubleslastyear=='0')?'0.00':myAvgScores.PITA.doubleslastyear}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg1 </ion-col>
+                <ion-col width-50 text-center> {{PITAavg | number : '1.2-2'}}</ion-col>
+
+                <ion-col width-33 text-center>{{PITATotal=='0'?'0.00':PITATotal}}</ion-col>
+                <!-- <ion-col width-50 text-center> {{((myAvgScores.PITA.singleavg + myAvgScores.PITA.handicapavg + myAvgScores.PITA.doubleavg)/3=='0')?'0.00':(myAvgScores.PITA.singleavg
+                  + myAvgScores.PITA.handicapavg + myAvgScores.PITA.doubleavg)/3 | number : '1.2-2' }}
+                </ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.PITA.singletotal + myAvgScores.PITA.handicaptotal + myAvgScores.PITA.doubletotal=='0')?'0.00':myAvgScores.PITA.singletotal
+                  + myAvgScores.PITA.handicaptotal + myAvgScores.PITA.doubletotal}}</ion-col> -->
+              </ion-row>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg2</ion-col>
+                <ion-col width-50 text-center>
+                  {{ (myAvgScores.PITA.average21=='0')?'0.00':myAvgScores.PITA.average21}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{ (myAvgScores.PITA.average22=='0')?'0.00':myAvgScores.PITA.average22}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-scroll *ngIf="myAvgScores != ''" class="scrollSecond" scrollY="true" scrollX="true">
+
+          <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row class="header_for_all">
+                  <ion-col width-25 class="date_col">
+                    <b>
+                      <u> Date</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-35>
+                    <b>
+                      <u>Sh Name</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                  <ion-col width-15>
+                    <b>
+                      <u>Type</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-15>
+                    <b>
+                      <u>Score</u>
+                    </b>
+                  </ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.levelname ==='PITA'" class="content_for_all">
+                    <ion-col width-25 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy'}}</p>
+                    </ion-col>
+                    <ion-col width-35 text-capitalize class="text-wrap" style="padding-left:0px">{{event.shoot_name}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event!='' && event.event_no!='0'">{{event.event_no}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event==''||event.event_no=='0'">-</ion-col>
+                    <ion-col width-15>{{event.typename}}</ion-col>
+                    <ion-col width-15>{{event.score}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-scroll>
+      </ion-slide>
+      <ion-slide>
+        <ion-grid class="firstTable" *ngSwitchCase="'lge'">
+          <ion-row class="noPadding" style="padding-left: 4px;">
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <strong>Avg</strong>
+                </ion-col>
+                <ion-col width-33 text-center class="bold">
+                  <strong>Total</strong>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.LEAGUE.singleavg=='0')?'0.00':myAvgScores.LEAGUE.singleavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.LEAGUE.singletotal=='0')?'0.00':myAvgScores.LEAGUE.singletotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.LEAGUE.handicapavg=='0')?'0.00':myAvgScores.LEAGUE.handicapavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.LEAGUE.handicaptotal=='0')?'0.00':myAvgScores.LEAGUE.handicaptotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.LEAGUE.doubleavg=='0')?'0.00':myAvgScores.LEAGUE.doubleavg}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{(myAvgScores.LEAGUE.doubletotal=='0')?'0.00':myAvgScores.LEAGUE.doubletotal}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col width-50 class="borderLeft">
+              <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <strong>Last 500</strong>
+                </ion-col>
+                <ion-col width-40 text-center class="bold">
+                  <strong>Last Year</strong>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.LEAGUE.singlefivehundred=='0')? '0.00':myAvgScores.LEAGUE.singlefivehundred }}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.LEAGUE.singlelastyear=='0')?'0.00':myAvgScores.LEAGUE.singlelastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.LEAGUE.handicapfivehundred=='0')?'0.00':myAvgScores.LEAGUE.handicapfivehundred}}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.LEAGUE.handicaplastyear=='0')?'0.00':myAvgScores.LEAGUE.handicaplastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.LEAGUE.doublesfivehundred=='0')?'0.00':myAvgScores.LEAGUE.doublesfivehundred}}
+                </ion-col>
+                <ion-col width-40 text-center>
+                  {{(myAvgScores.LEAGUE.doubleslastyear=='0')?'0.00':myAvgScores.LEAGUE.doubleslastyear}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15 class="bolds"> Avg1 </ion-col>
+
+                <ion-col width-50 text-center> {{LGEavg | number : '1.2-2'}}</ion-col>
+
+                <ion-col width-33 text-center>{{LGEtotal=='0'?'0.00':LGEtotal}}</ion-col>
+                <!-- <ion-col width-50 text-center> {{((myAvgScores.LEAGUE.singleavg + myAvgScores.LEAGUE.handicapavg + myAvgScores.LEAGUE.doubleavg)/3=='0')?'0.00':(myAvgScores.LEAGUE.singleavg
+                  + myAvgScores.LEAGUE.handicapavg + myAvgScores.LEAGUE.doubleavg)/3 | number : '1.2-2' }}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.LEAGUE.singletotal + myAvgScores.LEAGUE.handicaptotal + myAvgScores.LEAGUE.doubletotal=='0')?'0.00':myAvgScores.LEAGUE.singletotal
+                  + myAvgScores.LEAGUE.handicaptotal + myAvgScores.LEAGUE.doubletotal}}</ion-col> -->
+              </ion-row>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg2</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.LEAGUE.average21=='0')?'0.00':myAvgScores.LEAGUE.average21}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{(myAvgScores.LEAGUE.average22=='0')?'0.00':myAvgScores.LEAGUE.average22}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-scroll *ngIf="myAvgScores != ''" class="scrollSecond" scrollY="true" scrollX="true">
+            <ion-grid class="background">
+              <ion-row>
+                <ion-col>
+                  <ion-row class="header_for_all">
+                    <ion-col width-25 class="date_col">
+                      <b>
+                        <u> Date</u>
+                      </b>
+                    </ion-col>
+                    <ion-col width-35>
+                      <b>
+                        <u>Sh Name</u>
+                      </b>
+                    </ion-col>
+                    <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                    <ion-col width-15>
+                      <b>
+                        <u>Type</u>
+                      </b>
+                    </ion-col>
+                    <ion-col width-15>
+                      <b>
+                        <u>Score</u>
+                      </b>
+                    </ion-col>
+                  </ion-row>
+                  <div *ngFor="let event of myAvgScores.eventlist">
+                    <ion-row *ngIf="event.levelname ==='LEAGUE'" class="content_for_all">
+                      <ion-col width-25 class="date_col1">
+                        <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy'}}</p>
+                      </ion-col>
+                      <ion-col width-35 text-capitalize class="text-wrap" style="padding-left:0px">{{event.shoot_name}}</ion-col>
+                      <ion-col width-10 fixed *ngIf="event.event!='' && event.event_no!='0'">{{event.event_no}}</ion-col>
+                      <ion-col width-10 fixed *ngIf="event.event==''||event.event_no=='0'">-</ion-col>
+                      <ion-col width-15>{{event.typename}}</ion-col>
+                      <ion-col width-15>{{event.score}}</ion-col>
+                    </ion-row>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-scroll>
+        </ion-grid>
+      </ion-slide>
+      <ion-slide>
+        <ion-grid class="firstTable" *ngSwitchCase="'pract'">
+          <ion-row class="noPadding" style="padding-left: 4px;">
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <strong>Avg</strong>
+                </ion-col>
+                <ion-col width-33 text-center class="bold">
+                  <strong>Total</strong>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PRACTICE.singleavg=='0')?'0.00':myAvgScores.PRACTICE.singleavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.PRACTICE.singletotal=='0')?'0.00':myAvgScores.PRACTICE.singletotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PRACTICE.handicapavg=='0')?'0.00':myAvgScores.PRACTICE.handicapavg}}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.PRACTICE.handicaptotal=='0')?'0.00':myAvgScores.PRACTICE.handicaptotal}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-15>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.PRACTICE.doubleavg=='0')?'0.00':myAvgScores.PRACTICE.doubleavg}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{(myAvgScores.PRACTICE.doubletotal=='0')?'0.00':myAvgScores.PRACTICE.doubletotal}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col width-50 class="borderLeft">
+              <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-50 text-center class="bold">
+                  <strong>Last 500</strong>
+                </ion-col>
+                <ion-col width-40 text-center class="bold">
+                  <strong>Last Year</strong>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>S</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PRACTICE.singlefivehundred=='0')?'0.00':myAvgScores.PRACTICE.singlefivehundred }}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.PRACTICE.singlelastyear=='0')?'0.00':myAvgScores.PRACTICE.singlelastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>H</ion-col>
+                <ion-col width-50 text-center>{{(myAvgScores.PRACTICE.handicapfivehundred=='0')?'0.00':myAvgScores.PRACTICE.handicapfivehundred}}</ion-col>
+                <ion-col width-40 text-center>{{(myAvgScores.PRACTICE.handicaplastyear=='0')?'0.00':myAvgScores.PRACTICE.handicaplastyear}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col width-10>D</ion-col>
+                <ion-col width-50 text-center>
+                  {{(myAvgScores.PRACTICE.doublesfivehundred=='0')?'0.00':myAvgScores.PRACTICE.doublesfivehundred}}
+                </ion-col>
+                <ion-col width-40 text-center>
+                  {{(myAvgScores.PRACTICE.doubleslastyear=='0')?'0.00':myAvgScores.PRACTICE.doubleslastyear}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-50>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg1 </ion-col>
+                <ion-col width-50 text-center> {{PRCTavg | number : '1.2-2'}}</ion-col>
+
+                <ion-col width-33 text-center>{{PRCTtotal=='0'?'0.00':PRCTtotal}}</ion-col>
+                <!-- <ion-col width-50 text-center> {{((myAvgScores.PRACTICE.singleavg + myAvgScores.PRACTICE.handicapavg + myAvgScores.PRACTICE.doubleavg)/3=='0')?'0.00':(myAvgScores.PRACTICE.singleavg
+                  + myAvgScores.PRACTICE.handicapavg + myAvgScores.PRACTICE.doubleavg)/3 | number : '1.2-2' }}</ion-col>
+                <ion-col width-33 text-center>{{(myAvgScores.PRACTICE.singletotal + myAvgScores.PRACTICE.handicaptotal + myAvgScores.PRACTICE.doubletotal=='0')?'0.00':myAvgScores.PRACTICE.singletotal
+                  + myAvgScores.PRACTICE.handicaptotal + myAvgScores.PRACTICE.doubletotal}}</ion-col> -->
+              </ion-row>
+              <ion-row>
+                <ion-col width-15 class="bolds">Avg2</ion-col>
+                <ion-col width-50 text-center>
+                  {{ (myAvgScores.PRACTICE.average21=='0')?'0.00':myAvgScores.PRACTICE.average21}}
+                </ion-col>
+                <ion-col width-33 text-center>
+                  {{ (myAvgScores.PRACTICE.average22=='0')?'0.00':myAvgScores.PRACTICE.average22}}
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-scroll *ngIf="myAvgScores != ''" class="scrollSecond" scrollY="true" scrollX="true">
+          <ion-grid class="background">
+            <ion-row>
+              <ion-col>
+                <ion-row class="header_for_all">
+                  <ion-col width-25 class="date_col">
+                    <b>
+                      <u> Date</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-35>
+                    <b>
+                      <u>Sh Name</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-10 fixed class="bold">Ev#</ion-col>
+                  <ion-col width-15>
+                    <b>
+                      <u>Type</u>
+                    </b>
+                  </ion-col>
+                  <ion-col width-15>
+                    <b>
+                      <u>Score</u>
+                    </b>
+                  </ion-col>
+                </ion-row>
+                <div *ngFor="let event of myAvgScores.eventlist">
+                  <ion-row *ngIf="event.levelname ==='PRACTICE'" class="content_for_all">
+                    <ion-col width-25 class="date_col1">
+                      <p *ngIf="event.start_date != '0000-00-00 00:00:00'" style="margin:0px">{{event.start_date | date : 'MM/dd/yy'}}</p>
+                    </ion-col>
+                    <ion-col width-35 text-capitalize class="text-wrap" style="padding-left:0px">{{event.shoot_name}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event!='' && event.event_no!='0'">{{event.event_no}}</ion-col>
+                    <ion-col width-10 fixed *ngIf="event.event==''||event.event_no=='0'">-</ion-col>
+                    <ion-col width-15>{{event.typename}}</ion-col>
+                    <ion-col width-15>{{event.score}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-scroll>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+</ion-content>

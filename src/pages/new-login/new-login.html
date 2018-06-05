@@ -1,0 +1,37 @@
+<!--
+  Generated template for the NewLogin page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content padding class="login-background" scroll="false">
+	<ion-grid>
+		<ion-row text-center>
+
+			<ion-col>	<img src="images/the_trap_app_logo_b.png" alt="" class="logo"></ion-col>
+
+		</ion-row>
+	</ion-grid>
+	
+	<!-- <h3 class="title-head">Trap App</h3> -->
+	<ion-grid class="grid">
+	  <ion-row>
+				<ion-col col-1>  </ion-col>
+			<ion-col col-3><p>Plan</p></ion-col>
+			<ion-col col-1> <p>|</p> </ion-col>
+			<ion-col col-3><p>Shoot</p></ion-col>
+					<ion-col col-1> <p>|</p> </ion-col>
+			<ion-col col-3><p>Improve</p></ion-col>
+			<ion-col col-1>  </ion-col>
+	  </ion-row>
+	</ion-grid>
+	<div class="button_area">
+		<button class="fblogin_button" (click)="doFbLogin()" ion-button block>Sign up with Facebook</button>
+		<button class="signup_button" (click)="goToSignup()" ion-button block>Sign up with Email</button>
+	</div>
+	<p>Have an account? <span (click)="goToLogin()"><u>Log in</u></span></p>
+
+
+</ion-content>

@@ -1,0 +1,62 @@
+page-settings-sub {
+	.bar-button-md{text-transform: capitalize;}
+	.hidebackIcon .title.title-md{ width:88%;}
+	.note_bg{ background:#f6f8fb;}
+	/*.item-md.item-input.input-has-focus .item-inner,.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner,.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child .item-inner{border-bottom:1px solid #387ef5; border-bottom:none !important; box-shadow:none !important; } 
+	ion-item{ border-bottom:1px solid #387ef5 !important;}*/
+	ion-avatar{width: 75px;height: 75px;position: relative;left: 50%;margin-left: -35px;}
+	ion-avatar img{ border-radius:50px;}
+
+	.textCommon{ color:#222;}
+	.selectPreferences ion-select{ border:1px solid #ccc; max-width:100%;width: 100%;padding: 5px !important; color:#222;}
+	.list-ios,.list-md{margin: -1px 0 0 0 !important;}
+	.item-md,.item-ios{ background:none !important;padding-left:0px;}
+	.verticalAlign{ padding-top:16px}
+	.toolbar-ios ion-title{padding: 0 40px 1px;}
+
+
+	.push p{font-family: 'Lato', sans-serif;font-weight:300;font-size: 16px; color:#333;}
+	.pushh p{font-family: 'Lato', sans-serif;font-weight:400;font-size: 14px; }
+	.push ion-label{text-overflow: inherit;overflow: visible;white-space: inherit;font-family: 'Lato', sans-serif;font-weight:400;font-size: 14px;}
+	.push h2{font-size: 15px;border-bottom: 1px solid #ccc;padding: 0 0 10px 0;}
+	.image{height: 100px;width: 100px;border-radius: 50%;text-align: center;}
+	page-settings-sub ion-avatar {
+    width: 85px;
+    height: 75px;
+    position: relative;
+    left: 50%;
+    margin-left: -35px;
+}
+.profile{
+	// background: url('../images/login_bg.png') no-repeat center center fixed; 
+	// -webkit-background-size: cover;
+	// -moz-background-size: cover;
+	// -o-background-size: cover;
+	// background-size: cover; 
+}
+.noBg{
+	background-color: ghostwhite;
+}
+
+
+}
+.toolbar-ios{
+	padding-top: 10px !important;
+}
+.bar-buttons-ios[end]{
+	padding-top: 0px !important;
+}
+.bar-buttons-ios
+{
+	padding-top: 0px !important;
+}
+.toolbar-ios,.toolbar-ios ion-title
+{
+	min-height: 35px !important;
+	height:auto !important;
+	padding-top: 7px !important;
+}
+.toolbar-ios
+{
+	padding-right: 10px !important;
+}
